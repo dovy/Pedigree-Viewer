@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+		<style type="text/css">
+#info { top:7em;border:1px solid blue; width:15em; position:absolute; z-index:100; height:25em;overflow-y:auto;}
+#container { margin-left:18em; margin-right:5em;
+width:30em; height:27em; overflow:hidden; float:left;position:relative;
+}
+#chart { width:40em; height:40em; 
+background-image: -moz-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet); 
+background: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #fff), color-stop(0.5, #66cc00));
+}
+#chartPreview { margin-left:39em; margin-top:4em;width:10em; height:10em; overflow:hidden; 
+background-image: -moz-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet); 
+background: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #fff), color-stop(0.5, #66cc00));
+}
+#controls { position:absolute; }
+.border { border:1px dotted black; }
+.preview { background:transparent; border:2px solid yellow; cursor:move;}	
+		</style>		
+	</head>
+	<body>
+		<div id="controls">
+			<input checked type="checkbox" id="chkBorder"></input><label for="chkBorder">show container's border</label>
+		</div>
+		<div id="info"></div>
+		
+		<div id="container" class="border">
+			<div id="chart"></div>
+		</div>
+		<div id="chartPreview" class="border"> </div>
+		
+		<script type="text/javascript">
+			(function() {
+
+				var appendInfo = function(i) { info($("#info").html() + "<br/>" + i); };				
+				var info = function(i) { $("#info").html(i); };
+
+				var ProxyDragger = function(container, element, options) {
+					options = options || { };
+					var padding = options.padding || 50;  // how close the internal container can be dragged to the edge of the external before we force a stop.
+					var filterClasses = null;
+					if (options.filterClasses) {
+						filterClasses = options.filterClasses.split(" ");
+					}
+					// returns true if the element has any of the specified filter classes.
+					var _filterByClass = function(el) {
+						for(var c in filterClasses) 
+							if (el.hasClass(filterClasses[c])) return true;
+						return false;
+					};
+					container = typeof container == "string" ? $("#" + container) : $(container);
+					element = typeof element == "string" ? $("#" + element) : $(element); 
+					// get size and position of container. we dont get size of element; it may change.
+					var co = container.offset(), cw = container.outerWidth(), ch = container.outerHeight();
+					var down = false, downPosition = {};
+					var listenerSelector = options.listenerSelector || $(document); 
+					listenerSelector.bind("mousedown", function(e) {
+						if (e.which == 1) {
+							if (!filterClasses || !_filterByClass($(e.target))) {
+								down = true; 
+								downPosition.x = e.pageX, downPosition.y = e.pageY;
+								elementDownPosition = element.offset();
+							}
+						}
+					});
+					$(document).bind("mouseup", function(e) { down = false; });
+
+					var _listeners = [];
+					var _addListener = function(l) { _listeners.push(l); };
+					// really we should fire a custom event, and let jquery deal with registering
+					// event handlers for us.
+					var _fireUpdate = function(newOffset) {
+						for (var i in _listeners) {
+							try {
+								_listeners[i].proxyDragEvent(newOffset);
+							}
+							catch (e) { }
+						}
+					};
+ 
+					var MAX_LEFT = co.left + cw - padding, MIN_LEFT = co.left + padding, MAX_TOP = co.top + ch - padding, MIN_TOP = co.top + padding;
+					/**
+					 * moves the drag element if it is determined it wont be outside the bounds of the container.
+					 */
+					var _move = function(newX, newY) {												
+						var o = element.offset();
+						var dx = newX - downPosition.x, dy = newY - downPosition.y;
+						var proposedLeft = o.left + dx, proposedTop = o.top + dy;
+						downPosition.x = newX, downPosition.y = newY;
+						return _clamp(proposedLeft, proposedTop);
+					};
+
+					var _clamp = function(proposedLeft, proposedTop) {
+						var dw = element.outerWidth(), dh = element.outerHeight();
+						if (proposedLeft >= MAX_LEFT) proposedLeft = MAX_LEFT;
+						if (proposedLeft + dw <= MIN_LEFT) proposedLeft = MIN_LEFT - dw;
+						if (proposedTop >= MAX_TOP) proposedTop = MAX_TOP;
+						if (proposedTop + dh <= MIN_TOP) proposedTop = MIN_TOP - dh;						
+						var newOffset = {left:proposedLeft, top:proposedTop};
+						element.offset(newOffset);
+						return newOffset;
+					};
+					
+					$(document).bind("mousemove", function(e) { 
+						if (down) {
+							e.preventDefault();  // stops things being selected on the page. quite invasive.
+							var newOffset = _move(e.pageX, e.pageY);
+							_fireUpdate(newOffset);
+						} 
+					});
+					
+					var _panningNow = false;
+					//todo refactor to use _clamp; we can pass in the function we want to execute post-clamp.
+					var _pan = function(input) {
+						_panningNow = true;
+						input = input || {};
+						var values = {};
+						var dw = element.outerWidth(), dh = element.outerHeight();
+						var o = element.offset();
+						if (input.left) {
+							var proposedLeft = o.left + input.left;
+							if (proposedLeft >= MAX_LEFT) input.left = input.left + (MAX_LEFT - proposedLeft)
+							if (proposedLeft + dw <= MIN_LEFT) input.left = MIN_LEFT - o.left - dw;			
+							var sl = input.left < 0 ? "-" : "+";
+							values.left = sl + "=" + Math.abs(input.left) + "px";
+						}
+						
+						if (input.top) {
+							var proposedTop = o.top + input.top;
+							if (proposedTop >= MAX_TOP) input.top = (MAX_TOP - o.top);
+							if (proposedTop + dh <= MIN_TOP) input.top = MIN_TOP - o.top - dh;
+							var sl = input.top < 0 ? "-" : "+";
+							values.top = sl + "=" + Math.abs(input.top) + "px";
+						}
+						
+						element.animate(values, {duration:'medium', complete:function() { _panningNow = false; } });
+						
+					};
+							
+					this.pan = function(input) {		
+						if (!_panningNow) {			
+							_pan(input);
+						}
+					};
+
+					this.moveTo = function(pos) {
+						_clamp(co.left + pos.left, co.top + pos.top);
+					};
+
+					this.addListener = _addListener;
+				};
+
+				var PreviewPane = function(params) {
+					var container = $("#" + params.container);
+					var containerWidth = container.outerWidth(), containerHeight = container.outerHeight();
+					var chart = $("#" + params.chart);
+					var previewContainer = $("#" + params.preview);
+					var pco = previewContainer.offset();
+					var preview = document.createElement("div");					
+					preview = $(preview);
+					previewContainer.append(preview);
+					
+					preview.addClass("preview");
+					var zoom = 0.25;
+					var chartWidth = chart.outerWidth(), chartHeight = chart.outerHeight();
+					if (chartWidth < containerWidth && chartHeight < containerHeight) {
+						// what to do in this case? 
+					//	preview.width(chart.outerWidth() * zoom);
+					//	preview.height(chart.outerHeight() * zoom);
+					}
+					else {
+						preview.width(containerWidth * zoom);
+						preview.height(containerHeight * zoom);
+					}
+
+					var _listeners = [];
+					var _addListener = function(l) { _listeners.push(l); };
+					// really we should fire a custom event, and let jquery deal with registering
+					// event handlers for us.
+					var _fireUpdate = function(newOffset) {
+						for (var i in _listeners) {
+							try {
+								_listeners[i].previewDragEvent(newOffset);
+							}
+							catch (e) { }
+						}
+					};
+	
+					var previewProxyDragger = new ProxyDragger(previewContainer, preview, {padding:0.25*50, listenerSelector:$(preview)});
+					previewProxyDragger.addListener({
+						proxyDragEvent : function(offset) {
+							var dl = offset.left - pco.left , dt = offset.top - pco.top ;
+							dl = dl / zoom, dt = dt / zoom;
+							_fireUpdate({left:-dl, top:-dt});							
+							$("#info").html("preview : moving to " + -dl +"," + -dt);
+						}
+					});
+
+					this.proxyDragEvent = function(offset) {
+						var co = container.offset();
+						var dl = offset.left - co.left, dt = offset.top - co.top;
+						var pco = previewContainer.offset();
+						preview.offset({left:pco.left - (dl * zoom),top:pco.top - (dt * zoom)});
+					};
+
+					this.addListener = _addListener;
+				};
+
+				$(document).ready(function() {
+					var proxyDragger = new ProxyDragger("container", "chart", {filterClasses:"preview"});
+					var previewPane = new PreviewPane({container:"container", chart:"chart", preview:"chartPreview"}); 
+					proxyDragger.addListener(previewPane);
+					previewPane.addListener({
+						previewDragEvent : function(offset) {
+							proxyDragger.moveTo(offset);
+						}
+					});
+					
+					$("#chkBorder").bind("click", function() {
+						if($(this).attr("checked"))
+							$("#container").addClass("border");
+						else
+							$("#container").removeClass("border");
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

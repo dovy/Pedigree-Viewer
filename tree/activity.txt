@@ -1,0 +1,512 @@
+07 07 2010  
+
+start 15:12
+
+- initial study
+- setup test project " hg clone http://morrisonpitt.com/hg/familysearch"
+- setup eclipse with mercurial
+- prototyping
+
+finish 18:50
+
+start 19:15
+
+- prototyping
+
+finish 20:42
+
+start 21:30
+
+- final pieces of the prototype, pushing to web etc.
+
+finish 00:18
+
+9.5 hours
+
+-------------
+
+07 08 2010
+
+start 17:04 
+
+- setting y positions correctly for every column
+- did vertical + horizontal orientation charts
+
+finish 20.47
+
+3.42 hours
+
+---------------
+
+07 17 2010
+
+start 9:00 
+
+- investigating appending endpoints/connectors to elements rather than the body; this is to facilitate dragging the entire
+  chart as one piece.
+
+finish 10.30 
+
+1.5 hours
+
+----------------
+
+07 18 2010
+
+start 8.30
+
+- more work on attaching connectors/endpoints to containers.
+
+finish 10:00
+
+1.5 hours
+
+-----------------
+
+07 19 2010
+
+start 07:15
+
+- downloading Dovy's updates and installing/configuring PHP
+- integration of recent canvas layout changes into the rt collab chart.
+- creation of Person/Couple model classes
+- rework of the drawing algorithm to be couple centric
+- integrated changes into Dovy's PHP file
+
+	TODO: if father does not exist, try drawing the mother only.
+
+finish 12:45
+
+5.5 hours
+
+start 15:00
+
+- positioning the chart in the center of the containing div
+- highlighting the connectors.
+
+finish 17:00
+
+2 hours
+
+
+----------------------
+
+07 22 2010
+
+start 08:00
+
+- setup HG repo for others to use
+- merge jsplumb branch into trunk 
+
+finish 08:30
+
+start 21:00
+
+- reworked the lineage method to return relationships for highlighting
+- added initialize method to setup children/parents
+
+finish 23:45
+
+3.25 hours
+
+------------------------
+
+07 23 2010
+
+start 7.30
+
+finish 8.45
+
+1.25 hours
+
+------------------------
+
+07 25 2010
+
+start 08:30
+
+- final integration of jsplumb 1.2.1; release; update demo.
+
+finish 12:00
+
+3.5 hours.
+
+------------------------------------------------
+07/25/2010          INVOICE RTC-1				RECEIVED PAYMENT 07/30/2010
+------------------------------------------------
+
+07 27 2010
+
+start 08:30
+
+- call with Dovy
+- bowtie chart
+- chart container positioning
+
+finish 13:30
+
+start 15:45
+
+- bowtie chart
+
+finish 17:00
+
+start 19:30
+
+-bowtie chart
+
+finish 20:15
+
+7 hours
+
+------------------------------
+
+
+07 31 2010
+
+start 06:30
+
+- positioning, vertical chart, refactoring
+
+finish 09:30
+
+3 hours
+
+-----------------------------
+
+08 01 2010
+
+start 07:45
+
+- parameterising the spacing in the chart
+- constraining the ancestor highlighting to follow parents only
+- constraining the chart so it cannot be dragged to a position where it can no longer be seen.
+
+finish 09:30
+
+start 13:15
+
+- updating demos online
+
+finish 14:15
+
+2.75 hours
+
+------------------------------
+
+08 03 2010
+
+start 07:00
+
+- flipping order in vertical charts so ancestors are above and descendants below
+- centering on focus individual once chart is drawn (added centerOn method which can be used from anywhere)
+- formatting issues for highlighting blank couples (only father was highlighted)
+
+finish 09:00
+
+start 09:30
+
+- drag containment - don't cancel, just reposition?  is that possible?
+
+abandoned
+
+2 hours
+-------------------------------
+
+08 04 2010
+
+start 07:30
+
+- dragging!
+finish 11:00
+
+start 17:00
+
+- dragging!
+
+finish 19:00
+
+start 21:15
+- panning
+finish 22:00
+
+
+6.25 hours
+
+------------------
+
+08 05 2010
+
+start 07:45
+- centering, panning
+finish 09:30
+
+1.75 hours
+
+------------------
+
+08 06 2010
+
+start 08:00
+
+- added left mouse filter to drag handler
+- added filterClasses concept to drag handler
+- added zoom functionality
+
+finish 10:00
+
+start 10:30
+
+- zoom view panel
+
+finish 11:00
+
+start 20:00
+- preview pane
+finish 21:30
+
+4 hours
+
+--------------------------------------------------------------------
+08/06/2010          INVOICE RTC-2				
+--------------------------------------------------------------------
+
+08 08 2010
+
+start 10:30
+
+- preview pane
+
+finish 14:00
+
+3.5 hours
+
+-------------------------------------------------------------------
+
+08 10 2010
+
+start 09:30
+
+- chart spacing, zoom, preview pane.
+
+finish 11:30
+
+2 hours
+
+-------------------------------------------------------------------------
+
+08 11 2010
+
+start 08:45
+
+- mouse wheel integration into zoom
+
+finish 11:45
+
+3 hours
+
+---------------------------------------------------------------------
+08 12 2010
+
+start 10:00
+
+- extracted renderer out so we can render the chart with different boxes (eg for preview pane)
+
+finish 11:30
+
+start 15:00
+
+- preview pane renderer
+
+finish 17:00
+
+3.5 hours
+
+----------------------------------------------------------------------
+
+08 13 2010
+
+start 08:00
+
+- zIndex of connectors when highlighted.
+- proper set of connectors for genealogy.
+
+finish 11:30
+
+start 16:00
+
+- preview pane dragging
+
+finish 18:30
+
+6 hours
+
+-----------------------------------------------------------------------
+
+08 16 2010
+
+start 16:30
+
+- connector z-index when highlighting
+- admin
+
+finish 19:30
+
+3 hours
+
+-----------------------------------------------------------------------
+
+08 17 2010
+
+start 08:00
+
+- single canvas approach, for performance.
+
+finish 10:30
+
+start 16:30
+
+- more single canvas stuff
+
+finish 17:30
+
+3.5 hours
+
+------------------------------------------------------------------------
+
+08 18 2010
+
+start 07:30
+
+- single canvas
+
+finish 11:00
+
+start 15:15
+
+- highlighting on the single canvas.
+
+finish 16:45
+
+
+5 hours
+
+-----------------------------------------------------------------------
+
+08 19 2010
+
+start 17:15
+
+- integration of latest changes into dovy's example page.
+
+finish 18:15
+
+1 hour
+
+--------------------------------------------------------------------
+
+08 20 2010
+
+start 10:30
+finish 11:00
+
+start 15:00
+
+- fixed highlighting for the new single canvas approach.
+- creating sharing-time-chart.js script, to wrap all the stuff like ajax calls, orientation changes etc.
+
+finish 17:30
+
+2.5 hours
+
+
+--------------------------------------------------------------------
+08/20/2010          INVOICE RTC-3				
+--------------------------------------------------------------------
+
+08 21 2010
+
+start 20:45
+
+- caching lineage lists for speed
+
+finish 21:45
+
+1 hour
+
+--------------------------------------------------------------------
+
+08 22 2010
+
+start 08:45
+
+- caching
+- multiple spouses
+
+finish 09:45
+
+1 hour
+
+-----------------------------------------------------------------
+
+08 23 2010
+
+start 08:30
+
+- circular deps
+
+finish 10:00
+
+start 20:00
+
+- performance
+
+finish 23:00
+
+4.5 hours
+
+--------------------------------------------------------------------
+
+08 27 2010
+
+start 07:30
+
+- performance
+
+finish 08:30
+
+-------------------------------------------------------------------
+
+08 28 2010
+
+start 11:30
+
+- zooming in IE with single canvas approach
+
+finish 14:00
+
+start 15:30
+
+- preview pane 
+
+finish 17:30
+
+-----------------------------------------------------------------
+
+08 29 2010
+
+start 11:30
+
+- IE
+
+finish 12:45
+
+start 16:30
+
+- preview pane
+
+finish 19:30
+
+start 20:00
+
+finish 21:30

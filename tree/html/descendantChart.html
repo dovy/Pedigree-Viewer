@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<title>SharingTime test - Descendant Chart</title>
+		<link rel="stylesheet" href="../css/family-search.css"></link>
+	</head>
+	<body>
+
+	<div id="controls">
+		<span>orientation : </span>
+		<input type="radio" name="orientation" checked class="chkOrientation" id="chkHorizontal" rel="horizontal"></input><label for="chkHorizontal">horizontal</label>
+		<input type="radio" name="orientation" class="chkOrientation" id="chkVertical" rel="vertical"></input><label for="chkVertical">vertical</label>
+		<br/>		
+		<p>
+		zoom :<div id="slider"></div>
+		</p>
+		<p>
+		<a href="#" id="actRecenter">recenter</a> |
+		<a href="#" class="pan" rel="left">pan left</a> |
+		<a href="#" class="pan" rel="up">pan up</a> |
+		<a href="#" class="pan" rel="right">pan right</a> |
+		<a href="#" class="pan" rel="down">pan down</a>
+		</p>
+		<br/><br/>
+		<a href="index.html">go back to the index</a>
+	</div>
+	<div id="chartContainer">
+		<div id="chart"></div>
+		<div id="wait">please wait...loading</div>
+	</div>
+	<div id="chartPreviewContainer">
+		<div id="chartPreview"></div>
+	</div>
+	<div id="info"></div>
+
+
+	<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="../js/sharing-time.js"></script>
+	<script type="text/javascript" src="../js/sharing-time-ui.js"></script>
+	<script type="text/javascript" src="../js/sharing-time-chart.js"></script>
+	<script type="text/javascript" src="../js/jsZoom.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//var chart = new SharingTimeChart({dataUrl:"../data/small_sample.json"});
+			var chart = new SharingTimeChart({dataUrl:"../data/data.json"});
+			chart.load(
+			{
+				chartDiv : "chart", chartType:'descendant',
+				defaults:{
+					highlightPaintStyle:{ lineWidth:4, strokeStyle:'#fff9b5' } // this is for highlighting connectors
+				},
+				orientation:$("#chkHorizontal").attr('checked') ? 'horizontal' : 'vertical',
+				minZoom:0.2, maxZoom:2.5, zoomStep:0.1,
+				slider:"#slider", wheel:"#chartContainer",
+				preview : {
+					chartDiv : "chartPreview",
+					/*classes :{ couple:'previewCouple' }*/
+				}
+			});
+
+			$(".pan").bind("click", function() {
+				chart.pan([$(this).attr("rel")]);
+			});
+
+			// centering
+			$("#actRecenter").bind('click', function() {
+				chart.recenter();
+			});
+
+			// orientation
+			$(".chkOrientation").click(function() {
+				chart.setOrientation($(this).attr("rel"));
+			});
+		});
+	</script>
+<script type="text/javascript">var sc_project=6033626; var sc_invisible=1; var sc_security="35818bad"; </script>
+<script type="text/javascript"src="http://www.statcounter.com/counter/counter.js"></script><noscript><div class="statcounter"><a title="counter for tumblr" href="http://www.statcounter.com/tumblr/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/6033626/0/35818bad/1/" alt="counter for tumblr" ></a></div></noscript>
+	</body>
+</html>

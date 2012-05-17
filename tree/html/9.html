@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<title>family search test</title>
+		<link rel="stylesheet" href="../css/family-search.css"></link>
+	</head>
+	<body>
+	
+	<div id="controls">
+		<span>chart orientation : </span>
+		<input type="radio" name="orientation" checked class="chkOrientation" id="chkHorizontal" rel="horizontal"></input><label for="chkHorizontal">horizontal</label>
+		<input type="radio" name="orientation" class="chkOrientation" id="chkVertical" rel="vertical"></input><label for="chkVertical">vertical</label>
+		<br/>
+		select chart : <a href="index.html">5 levels</a> | 9 levels			
+	</div>
+	<div id="chart"></div>
+	<div id="info"></div>
+	<div id="wait">please wait...loading</div>
+	
+	<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>	
+	<script type="text/javascript" src="http://jsplumb.googlecode.com/svn/trunk/js/1.2.1/jsPlumb-1.2.1-RC1.js"></script>
+	<script type="text/javascript" src="http://jsplumb.googlecode.com/svn/trunk/js/1.2.1/jsPlumb-defaults-1.2.1-RC1.js"></script>
+	<script type="text/javascript" src="http://jsplumb.googlecode.com/svn/trunk/js/1.2.1/jquery.jsPlumb-1.2.1-RC1.js"></script>				
+	<script type="text/javascript" src="../js/family-search.js"></script>
+	<script type="text/javascript" src="../js/family-search-ui.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			jsPlumb.Defaults.Anchors = [jsPlumb.Anchors.RightMiddle, jsPlumb.Anchors.LeftMiddle ];
+			jsPlumb.Defaults.Connector = new jsPlumb.Connectors.Bezier(50);
+			jsPlumb.Defaults.PaintStyle = { lineWidth:2, strokeStyle:'gray'};
+			jsPlumb.Defaults.Endpoint = new jsPlumb.Endpoints.Dot({radius:3});
+			jsPlumb.setDraggableByDefault(false); 
+			var familySearch = null;
+			var ui = new FamilySearchUI();			
+			$.get("../data/nine_levels.json", function(results) {
+				var d = eval("(" + results + ")");
+				familySearch = FamilySearch.getInstance(d['data']);
+				ui.initialize(familySearch,{orientation:$("#chkHorizontal").attr('checked') ? 'horizontal' : 'vertical'});							
+			}); 
+		});
+	</script>
+<script type="text/javascript">var sc_project=6033626; var sc_invisible=1; var sc_security="35818bad"; </script>
+<script type="text/javascript"src="http://www.statcounter.com/counter/counter.js"></script><noscript><div class="statcounter"><a title="counter for tumblr" href="http://www.statcounter.com/tumblr/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/6033626/0/35818bad/1/" alt="counter for tumblr" ></a></div></noscript>
+	</body>
+</html>
