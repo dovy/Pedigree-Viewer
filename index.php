@@ -27,6 +27,7 @@
 	<title>HTML5 Pedigree-Viewer Demo</title>
 	<link href="css/pedigree-viewer.css" rel="stylesheet" media="all">
 
+
 	<!-- Yay jQuery! Yay jQuery-ui! -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
@@ -90,6 +91,7 @@
 		<li>The tree is names only, and non-search engine friendly (so it wouldn't make a good personal genealogy page by itself)</li>
 		<li>No other information is shown for ancestors except their names.</li>
 		<li>Clicking an individual doesn't re-center the tree on them.</li>
+		<li>Doesn't work with IE9 yet. Other versions of IE should probably work.</li>
 	    </ul>
 	    <h3>Support</h3>
 	    <p>
