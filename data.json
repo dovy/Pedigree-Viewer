@@ -1,0 +1,23 @@
+{"data":{"focus":"I21","people":[{"id":"I21","fn":"Arthur James","sn":"Moore","s":"M","f":"I11","m":"I19","sp":"I47"}
+,{"sp":"I21","id":"I47","fn":"Marie Eleanor Ericka","sn":"Olson","s":"F","f":"I94","m":"I96"}
+,{"f":"I21","m":"I47","id":"I49","fn":"James R  .","sn":"Moore","s":"M"}
+,{"f":"I21","m":"I47","id":"I50","fn":"Arthur Robert","sn":"Moore","s":"M"}
+,{"f":"I21","m":"I47","id":"I48","fn":"Howard William","sn":"Moore","s":"M","sp":"I82"}
+,{"id":"I11","fn":"John J","sn":"Moore","s":"M","f":"I1","m":"I2","sp":"I22"}
+,{"sp":"I11","id":"I19","fn":"Delia","sn":"Craig","s":"F"}
+,{"sp":"I11","id":"I22","fn":"Loretta","sn":"Carter","s":"F"}
+,{"sp":"I48","id":"I82","fn":"Anna Adeline","sn":"Johnson","s":"F"}
+,{"id":"I1","fn":"Patrick","sn":"McGuinness","s":"M","sp":"I2"}
+,{"sp":"I1","id":"I2","fn":"Maria","sn":"Moran","s":"F"}
+,{"id":"I94","fn":"Peder Andreas Mathias","sn":"Olson","s":"M","f":"I83","m":"I97","sp":"I96"}
+,{"sp":"I94","id":"I96","fn":"Anna Lovisa","sn":"Andersson","s":"F","f":"I95","m":"I89"}
+,{"id":"I83","fn":"Ole Johannes","sn":"Andersen","s":"M","f":"I98","m":"I99","sp":"I97"}
+,{"sp":"I83","id":"I97","fn":"Pernelle","sn":"Pedersdr","s":"F","f":"I100","m":"I101"}
+,{"id":"I95","fn":"Anders","sn":"Olson","s":"M","f":"I102","sp":"I89"}
+,{"sp":"I95","id":"I89","fn":"Karolina","sn":"Ersdotter","s":"F"}
+,{"id":"I98","fn":"Anders","sn":"Jetmundsen","s":"M","sp":"I99"}
+,{"sp":"I98","id":"I99","fn":"Mette Carine","sn":"Zachariasdr","s":"F"}
+,{"id":"I100","fn":"Peder","sn":"Johannesen","s":"M","sp":"I101"}
+,{"sp":"I100","id":"I101","fn":"Marte","sn":"Pedersdotter","s":"F"}
+,{"id":"I102","fn":"Olov","sn":"Persson","s":"M"}
+]}}

@@ -1,0 +1,24 @@
+/*
+Format of data.json
+
+{
+    "data" : {
+	"focus" : Id of focus individual. String or int,
+	"peeople : [ // Array of people
+	    {
+		'id' : Id of individual. String or int,
+		'fn' : First name, 
+		'sn' : Surname,
+		's'  : Sex. M or F. Capitalized.,
+		'sp' : Spouse Id. Currently only one spouse Id is supported,
+		'f'  : Father Id,
+		'm'  : Mother Id
+	    },
+	    {...},
+	    ...
+	    {...}
+	]
+    }
+}
+
+*/
