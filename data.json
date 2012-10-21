@@ -1,0 +1,68 @@
+{"data":{"focus":"I1","people":[{"id":"I1","fn":"Patrick","sn":"McGuinness","s":"M","sp":"I2"}
+,{"id":"I2","fn":"Maria","sn":"Moran","s":"F","sp":"I1"}
+,{"id":"I3","fn":"","sn":"Mcginniss","s":"M","m":"I2","f":"I1"}
+,{"id":"I4","fn":"Elizabeth Rosanna","sn":"McGuinness","s":"F","m":"I2","f":"I1"}
+,{"id":"I5","fn":"Charlotte","sn":"McGinnis","s":"F","m":"I2","f":"I1"}
+,{"id":"I6","fn":"Edward James","sn":"McGuinness","s":"M","m":"I2","f":"I1","sp":"I27"}
+,{"id":"I7","fn":"Patrick","sn":"McGinnis","s":"M","m":"I2","f":"I1"}
+,{"id":"I8","fn":"Walter","sn":"McGinnis","s":"M","m":"I2","f":"I1","sp":"I31"}
+,{"id":"I9","fn":"William","sn":"McGinnis","s":"M","m":"I2","f":"I1"}
+,{"id":"I10","fn":"James Edward","sn":"McGinnis","s":"M","m":"I2","f":"I1","sp":"I35"}
+,{"id":"I11","fn":"John J","sn":"Moore","s":"M","m":"I2","f":"I1","sp":"I22"}
+,{"id":"I12","fn":"Martin","sn":"McGinnis","s":"M","m":"I2","f":"I1"}
+,{"id":"I13","fn":"Elizabeth Rosanna","sn":"McGinnis","s":"F","m":"I2","f":"I1"}
+,{"id":"I14","fn":"Bernard","sn":"McGinnis","s":"M","m":"I2","f":"I1"}
+,{"id":"I15","fn":"Mary E  .","sn":"McGinnis","s":"F","m":"I2","f":"I1"}
+,{"id":"I16","fn":"Daniel","sn":"O'Malley","s":"M"}
+,{"id":"I17","fn":"Margaret","sn":"Hearne","s":"F"}
+,{"id":"I18","fn":"Joseph D  .","sn":"Berrigan","s":"M"}
+,{"id":"I19","fn":"Delia","sn":"Craig","s":"F","sp":"I11"}
+,{"id":"I20","fn":"John Henry","sn":"Moore","s":"M","m":"I19","f":"I11"}
+,{"id":"I21","fn":"Arthur James","sn":"Moore","s":"M","m":"I19","f":"I11","sp":"I47"}
+,{"id":"I22","fn":"Loretta","sn":"Carter","s":"F","sp":"I11"}
+,{"id":"I23","fn":"","sn":"Moore","s":"F","m":"I22","f":"I11"}
+,{"id":"I24","fn":"William E","sn":"Moore","s":"M","m":"I22","f":"I11"}
+,{"id":"I25","fn":"Martin","sn":"Moore","s":"M","m":"I22","f":"I11"}
+,{"id":"I26","fn":"Margarett","sn":"Hudd","s":"F"}
+,{"id":"I27","fn":"Mary","sn":"Keogh","s":"F","sp":"I6"}
+,{"id":"I28","fn":"Margaret","sn":"McGinness","s":"F","m":"I27","f":"I6","sp":"I61"}
+,{"id":"I29","fn":"Mary E  .","sn":"McGuiness","s":"F","m":"I27","f":"I6","sp":"I57"}
+,{"id":"I30","fn":"James","sn":"McGuinness","s":"M","m":"I27","f":"I6"}
+,{"id":"I31","fn":"Winifred A  .","sn":"Gallagher","s":"F","sp":"I8"}
+,{"id":"I32","fn":"Marie E","sn":"McGinnis","s":"F","m":"I31","f":"I8"}
+,{"id":"I33","fn":"Helen L","sn":"McGinnis","s":"F","m":"I31","f":"I8"}
+,{"id":"I34","fn":"Charles J","sn":"McGinnis","s":"M","m":"I31","f":"I8"}
+,{"id":"I35","fn":"Ellen","sn":"Ivory","s":"F","sp":"I10"}
+,{"id":"I36","fn":"Charlotte Marie","sn":"McGINNIS","s":"F","m":"I35","f":"I10"}
+,{"id":"I37","fn":"Mercedes Helen","sn":"McGINNIS","s":"F","m":"I35","f":"I10"}
+,{"id":"I38","fn":"Edward James","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I39","fn":"Walter Bernard","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I40","fn":"William Moran","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I41","fn":"John Gregory","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I42","fn":"Clarence Joseph","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I43","fn":"Louis Martin","sn":"McGINNIS","s":"M","m":"I35","f":"I10","sp":"I55"}
+,{"id":"I44","fn":"George Clifford","sn":"McGINNIS","s":"M","m":"I35","f":"I10"}
+,{"id":"I45","fn":"Marguerite","sn":"McGinnis","s":"F","m":"I35","f":"I10"}
+,{"id":"I46","fn":"Georgianna","sn":"Dearborn","s":"F"}
+,{"id":"I47","fn":"Marie Eleanor Ericka","sn":"Olson","s":"F","sp":"I21"}
+,{"id":"I48","fn":"Howard William","sn":"Moore","s":"M","m":"I47","f":"I21"}
+,{"id":"I49","fn":"James R  .","sn":"Moore","s":"M","m":"I47","f":"I21"}
+,{"id":"I50","fn":"Arthur Robert","sn":"Moore","s":"M","m":"I47","f":"I21"}
+,{"id":"I51","fn":"Collette Jean","sn":"Moore","s":"F","m":"I47","f":"I21"}
+,{"id":"I55","fn":"Margaret R","sn":"Morris","s":"F","sp":"I43"}
+,{"id":"I56","fn":"James Stanley","sn":"McGinnis","s":"M","m":"I55","f":"I43"}
+,{"id":"I57","fn":"John","sn":"Dolphin","s":"M","sp":"I29"}
+,{"id":"I58","fn":"John","sn":"Dolphin","s":"M","m":"I29","f":"I57"}
+,{"id":"I59","fn":"Mary","sn":"Dolphin","s":"F","m":"I29","f":"I57"}
+,{"id":"I60","fn":"Edward","sn":"Dolphin","s":"M","m":"I29","f":"I57"}
+,{"id":"I61","fn":"William T  .","sn":"Sweeney","s":"M","sp":"I28"}
+,{"id":"I62","fn":"Mary","sn":"Sweeney","s":"F","m":"I28","f":"I61"}
+,{"id":"I63","fn":"Margaret","sn":"Sweeney","s":"F","m":"I28","f":"I61"}
+,{"id":"I64","fn":"Helen","sn":"Sweeney","s":"F","m":"I28","f":"I61"}
+,{"id":"I65","fn":"Grace","sn":"Webster","s":"F"}
+,{"id":"I70","fn":"Emma","sn":"Mullins","s":"F"}
+,{"id":"I73","fn":"Leta","sn":"Daily","s":"F"}
+,{"id":"I74","fn":"Agnes Gladys","sn":"Nipper","s":"F"}
+,{"id":"I75","fn":"Hazel","sn":"West","s":"F"}
+,{"id":"I82","fn":"Anna Adeline","sn":"Johnson","s":"F"}
+,{"id":"I90","fn":"Adeline","sn":"Moore","s":"F","m":null,"f":null}]}}
