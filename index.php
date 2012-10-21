@@ -77,7 +77,11 @@
 	    <h1>HTML5 Pedigree-Viewer Demo</h1>
 	    <h2>A Pedigree-Viewer Demo</h2>
 	    <p>
-		This is a view of the descendants of part of my family tree. 
+		This is a bowtie view of part of my family tree. Other possible views include ancestors only and descendants only. 
+	    </p>
+	    <p>
+		Like what you see? 
+		<a href='https://github.com/stuporglue/Pedigree-Viewer'>Download the code for yourself!</a>.
 	    </p>
 	    <p>
 		Pedigree-Viewer is an HTML/JavaScript pedigree viewer created by <a href='http://rtcollab.com/'>Real Time Collaboration</a>.	
