@@ -1,25 +1,39 @@
 <?php
 
 /*
- * makeJson.php 
- *
- * Copyright: Michael Moore <stuporglue@gmail.com>
- * License: Use it and modify it however you want, including commercial use. 
- *
- * If you use it, I'd love to hear about it, but it's not required.
- *
- * Dependencies: 
- * You will need php-gedcom (https://github.com/stuporglue/php-gedcom)
- *
+ * makeJson.php -- Use the query string parameters to invoke gedToJson and get a JSON pedigree fragment
+ 
+    https://github.com/stuporglue/Pedigree-Viewer/
+
+    This code is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE
+    http://www.gnu.org/licenses/agpl-3.0.html
+
+    SharingTime Pedigree Viewer
+    Copyright (C) 2012 Real Time Collaboration
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
+
+ 
  * Usage:
- * Place gedToJson.php, php-gedcom and the GEDCOM file in the same directory
+ * Install php-gedcom in the lib directory. Put your GEDCOM file in the same directory as this file
  *
  * Make calls to it like so:
- * gedToJson.php?ged=McGinnis  
- * gedToJson.php?ged=McGinnis&i=I7&a=15&d=2 (Starting with ancestor I7, fetch them plus 15 generations of ancestors and 2 generations of descendants
+ * makeJson.php?ged=McGinnis  
+ * makeJson.php?ged=McGinnis&i=I7&a=15&d=2 (Starting with ancestor I7, fetch them plus 15 generations of ancestors and 2 generations of descendants
  *
  * Arguments:
- * 'ged' -- The filename (minus the .ged extension) The file must exist in the same directory as gedToJson.php
+ * 'ged' -- The filename (minus the .ged extension) The file must exist in the same directory as makeJson.php
  * 	required
  *
  * 'i' 	 -- Id of the Ancestor to start at

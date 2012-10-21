@@ -1,29 +1,45 @@
+/*
+    https://github.com/stuporglue/Pedigree-Viewer/
+
+    This code is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE
+    http://www.gnu.org/licenses/agpl-3.0.html
+
+    SharingTime Pedigree Viewer
+    Copyright (C) 2012 Real Time Collaboration
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
+ */
 #page_wrapper #page-content #page-content-wrapper {
-    padding:10px 202px 10px 10px;
+    padding:10px 10px 10px 10px;
     margin:0 20px;
+    border:#e5e1d8 solid 5px;
+
+    background:#fff right top repeat-y;
+
+    border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
-    border-radius:10px;
-    box-shadow:0 0 20px #000;
-    -o-box-shadow:0 0 20px #000;
-    -moz-box-shadow:0 0 20px #000;
-    -webkit-box-shadow:0 0 20px #000;
-}
-
-body {
-    background:#EFEBE3;
-}
 
 
-/* PAGE CONTENT */
-#page_wrapper #page-content #page-content-wrapper {
-    background:#fff right top repeat-y;
-    border:#e5e1d8 solid 5px;
     box-shadow:0 0 0 #fff;
     -o-box-shadow:0 0 0 #fff;
     -moz-box-shadow:0 0 0 #fff;
     -webkit-box-shadow:0 0 0 #fff;
-    padding-right:240px;
+}
+
+body {
+    background:#EFEBE3;
 }
 
 label {
@@ -46,6 +62,31 @@ label {
 
 #chartCanvas {
     z-index:0;
+    position:absolute;
+}
+
+#chartPreviewContainer {
+    border: 1px solid #eee;
+    background: #f8f8f8;
+    z-index: 900;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    width:13em;
+    height:8.25em;
+    padding:0.5em;
+    overflow:hidden;
+    position:absolute;
+    box-shadow:2px 2px 4px #ccc;
+    -webkit-box-shadow:2px 2px 4px #ccc;
+    -moz-box-shadow: 2px 2px 4px #ccc;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#chartPreview {
     position:absolute;
 }
 
@@ -122,17 +163,16 @@ label {
 .male span, .female span {
     display: block;
     float: left;
-    width: 16px;
     height: 12px;
-    margin-right: 1px;
+    width: 16px;
+    margin-top:  3px;
 }
 
 .male span {
-    background: url('../img/gender.png') top right no-repeat;
+    background: url("../img/gender.png") no-repeat scroll center top transparent;
 }
-
 .female span {
-    background: url('../img/gender.png') top left no-repeat;
+    background: url("../img/gender.png") no-repeat scroll center bottom transparent;
 }
 
 .couple {
@@ -163,34 +203,11 @@ label {
     display:none;
 }
 
-
 .focus {
     background: #f8f8f8;
     border-color: #666;
 }
 
-
-#pedigree {
-    height: 600px;
-    background: #fff;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    overflow:hidden;
-    width: auto;
-}
-
-#pedigree #tree_view {
-    width: 100%;
-    cursor: move !important;
-    visibility: hidden;
-    border: 1px solid #333;
-}
-
-#page_wrapper #page-content #page-content-wrapper {
-    background-image:none!important;
-    padding:0!important;
-}
 
 .unselectable {
     user-select: none;
@@ -199,36 +216,7 @@ label {
     -khtml-user-select: none;
 }
 
-#chartPreviewContainer {
-
-    border: 1px solid #eee;
-    background: #f8f8f8;
-    z-index: 900;
-    opacity: .8;
-    filter: alpha(opacity=80);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-    width:13em;
-    height:8.25em;
-    padding:0.5em;
-    overflow:hidden;
-    position:absolute;
-    bottom: 20px;
-    right: 20px;
-    box-shadow:2px 2px 4px #ccc;
-    -webkit-box-shadow:2px 2px 4px #ccc;
-    -moz-box-shadow: 2px 2px 4px #ccc;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-}
-
-#chartPreview {
-    position:absolute;
-}
-
 .preview {
-
     background:#fdf0bc;
     opacity: .6;
     filter: alpha(opacity=60);

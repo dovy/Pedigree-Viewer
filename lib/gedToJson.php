@@ -1,41 +1,42 @@
 <?php
 
 /*
- * gedToJson.php 
- *
- * Copyright: Michael Moore <stuporglue@gmail.com>
- * License: Use it and modify it however you want, including commercial use. 
- *
- * If you use it, I'd love to hear about it, but it's not required.
- *
+ * gedToJson.php -- Turn a GEDCOM into a JSON file that Pedigree-Viewer can use
+ 
+    https://github.com/stuporglue/Pedigree-Viewer/
+
+    This code is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE
+    http://www.gnu.org/licenses/agpl-3.0.html
+
+    SharingTime Pedigree Viewer
+    Copyright (C) 2012 Real Time Collaboration
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
+
  * Dependencies: 
  * You will need php-gedcom (https://github.com/stuporglue/php-gedcom)
  *
- * Usage:
- * Place gedToJson.php, php-gedcom and the GEDCOM file in the same directory
- *
- * Make calls to it like so:
- * gedToJson.php?ged=McGinnis  
- * gedToJson.php?ged=McGinnis&i=I7&a=15&d=2 (Starting with ancestor I7, fetch them plus 15 generations of ancestors and 2 generations of descendants
- *
- * Arguments:
- * 'ged' -- The filename (minus the .ged extension) The file must exist in the same directory as gedToJson.php
- * 	required
- *
- * 'i' 	 -- Id of the Ancestor to start at
- * 	optional
- * 	defaults to lowest ancestor id in the file as determined by PHP's sort 
- *
- * 'a'   -- Number of generations of ancestors to find
- * 	optional
- * 	defaults to 10 
- * 'd'   -- Number of generations of descendants to find
- * 	optional
- * 	defaults to 10 
  */
+
 require 'php-gedcom/lib/Gedcom/bootstrap.php';
 
 class gedToJson{
+    /**
+     * @class gedToJson
+     *
+     * @brief Turn a portion of a GEDCOM file into a JSON object for use in pedigree-viewer
+    */
 
     var $people = Array();
     var $gedcom;
@@ -43,6 +44,13 @@ class gedToJson{
     var $ancGens = 10;
     var $focus;
 
+    /**
+     * @brief Inialize a new gedToJson object
+     *
+     * @param $file (required) Path to a GEDCOM file that PHP can read
+     *
+     * @note Error messages will likely not be in JSON format
+     */
     function __construct($file){
 	$parser = new \Gedcom\Parser();
 
@@ -54,6 +62,22 @@ class gedToJson{
 	}
     }
 
+    /**
+     * @brief Turn a portion of the GEDCOM into a JSON tree fragment
+     *
+     * Since GEDCOM files can contain thousands of individuals and the web user 
+     * is probably only interested in a subset, and since their browser probably
+     * won't enjoy dealing with thousands of extra divs we return only a fragment
+     * of the pedigree, centered around a single individual.
+     *
+     * @param $i (optional) Which GEDCOM ID should the fragment be centered on? Defaults to the lowest ID in the GEDCOM file
+     *
+     * @param $a (optional) Number of ancestor generations from the individual. Defaults to 10.
+     *
+     * @param $d (optional) Number of descendant generations from the individual. Defaults to 10.
+     *
+     * @return A JSON string
+     */
     function toJson($i = NULL, $a = 10,$d = 10){
 	if(!is_null($a)){
 	    $this->ancGens = $a;
@@ -145,7 +169,13 @@ class gedToJson{
     }
 
 
-    // Send the response
+    /**
+     * @brief To string. 
+     *
+     * If you want JSON with the defaults you should be able to do: 
+     *
+     * print new gedToJson('filename.ged');
+     */
     function __toString(){
 	return $this->toJson();
     }
