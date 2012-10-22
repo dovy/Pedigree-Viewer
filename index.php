@@ -79,30 +79,29 @@
 	    <p>
 		This is a bowtie view of part of my family tree. Other possible views include ancestors only and descendants only. 
 	    </p>
+	    <h2>Download It</h2>
 	    <p>
-		Like what you see? 
-		<a href='https://github.com/stuporglue/Pedigree-Viewer'>Download the code for yourself!</a>.
+		Like what you see? Download the code for yourself!
+		<a href='https://github.com/stuporglue/Pedigree-Viewer'>Dev Code</a> | 
+		<a href='https://github.com/dovy/Pedigree-Viewer'>Stable Code</a>.
 	    </p>
+	    <h2>About</h2>
 	    <p>
 		Pedigree-Viewer is an HTML/JavaScript pedigree viewer created by <a href='http://rtcollab.com/'>Real Time Collaboration</a>.	
 		It loads the family tree structure from JSON via an AJAX call. This tree's source is <a href='data.json'>data.json</a>. Also 
 		included is a PHP class and wrapper which works with <a href='https://github.com/stuporglue/php-gedcom'>PHP-Gedcom</a> to 
 		create the needed JSON from a GEDCOM file as needed.  
 	    </p>
-	    <h3>Current Issues</h3>
-	    <ul>
-		<li>Some features like vertical tree orientation aren't demoed or tested yet.</li>
-		<li>The tree is names only, and non-search engine friendly (so it wouldn't make a good personal genealogy page by itself)</li>
-		<li>No other information is shown for ancestors except their names.</li>
-		<li>Clicking an individual doesn't re-center the tree on them.</li>
-		<li>Doesn't work with IE9 yet. Other versions of IE should probably work.</li>
-	    </ul>
-	    <h3>Support</h3>
+	    <h2>Current Issues</h2>
+	    <p>
+<a href='https://github.com/dovy/Pedigree-Viewer/issues?state=open'>Bugs are now tracked on GitHub</a>.
+	    </p>
+	    <h2>Support</h2>
 	    <p>
 		No official support is being offered by Real Time Collaboration. 
 		You can <a href='https://github.com/stuporglue/'>contact me</a> and I will assist as I can.
 	    </p>
-	    <h3>License</h3>
+	    <h2>License</h2>
 	    <p>
 		Pedigree-Viewer is being licensed under the <a href='http://www.gnu.org/licenses/agpl-3.0.html'>Affero General Public License</a>, an open-source license. 
 	    </p>
@@ -111,5 +110,14 @@
 	</div>
 	<div id="slider"></div>  
 	<div id="info"></div>		
+	<script type="text/javascript">
+	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	    var pageTracker = _gat._getTracker("UA-1692489-5");
+	    pageTracker._initData();
+	    pageTracker._trackPageview();
+	</script>
     </body>
 </html>

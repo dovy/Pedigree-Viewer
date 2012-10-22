@@ -613,7 +613,7 @@ var ProxyDragger = window.ProxyDragger = function(container, element, options) {
 		return newOffset;
 	};
 	
-	$(document).bind("mousemove", function(e) { 
+	$('#chartContainer').bind("mousemove", function(e) { 
 		if (down) {
 			e.preventDefault();  // stops things being selected on the page. quite invasive.
 			_move(e.pageX, e.pageY);			
