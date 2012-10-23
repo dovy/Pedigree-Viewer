@@ -39,7 +39,7 @@
 	<!-- Kick it off once everything is ready -->
 	<script type="text/javascript"> 
 		$(document).ready(function(){
-		    drawChart('data.json');
+		    chart = drawChart('data.json');
 		});
 	</script> 	
 	<!-- 
@@ -66,6 +66,17 @@
 	    <div id="page-content-wrapper" class="unselectable">
 		<div id="tree" class="ui-corner-all">
 		    <div id="chartContainer"> 
+			<div class='chartControls'>
+			<span class='chkOrientation' rel='vertical'>Vertical</span> | <span class='chkOrientation' rel='horizontal'>Horizontal</span>
+			    <div class="compass" title="">
+				<div rel="up" class="pan up" title="Pan up"></div>
+				<div rel="left" class="pan left" title="Pan left"></div>
+				<div rel="right" class="pan right" title="Pan right"></div>
+				<div rel="down" class="pan down" title="Pan down"></div>
+				<div rel='center' class="pan center" title="Return to the focus couple"></div>
+			    </div>
+			    <div class="slider"></div>  
+			</div>
 			<div id="chartPreviewContainer"> 
 			    <div id="chartPreview"></div> 
 			</div> 

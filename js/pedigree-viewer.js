@@ -1724,7 +1724,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			$.getJSON(params.dataUrl, finalReqParams, function(d) {
 				sharingTime = SharingTime.getInstance(d['data']);				
 				ui.initialize(sharingTime, options);
-				panFuncs = { "left":ui.panLeft, "up":ui.panUp, "right":ui.panRight, "down":ui.panDown };
+				panFuncs = { "left":ui.panLeft, "up":ui.panUp, "right":ui.panRight, "down":ui.panDown, "center":ui.recenter};
 			});
 		};
 		
@@ -1735,6 +1735,10 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		this.pan = function(direction) {			
 			panFuncs[direction]();
 		};
+
+		this.zoom = function(amt){
+
+		}
 		
 		/**
 		 * Recenters the chart to the currently focused individual.
@@ -1776,12 +1780,13 @@ function drawChart(myDataUrl){
 	);
 
 	// pan
-	$(".pan").bind("click", function() { chart.pan($(this).attr("rel")); });
-	$("#centerFocus").bind('click', function() { chart.recenter(); });
+	$(".chartControls .pan").bind("click", function() { chart.pan($(this).attr("rel")); });
 
 	// orientation
 	$(".chkOrientation").click(function() {
 	    chart.setOrientation($(this).attr("rel"));
 	});			
+
+	return chart;
 }
 

@@ -1,0 +1,3 @@
+lib/php-gedcom
+*.ged
+error_log
