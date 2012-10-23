@@ -35,7 +35,7 @@
 	
 	var ie = (/MSIE/.test(navigator.userAgent) && !window.opera);
 	var ZOOM = "zoom", SCALE = "scale", MOZ_TRANSFORM = "-moz-transform",
-		WEBKIT_TRANSFORM = "-webkit-transform", O_TRANSFORM = "-o-transform",
+		WEBKIT_TRANSFORM = "-webkit-transform", O_TRANSFORM = "-o-transform", MS_TRANSFORM = "-ms-transform",
 		TRANSFORM = "transform", FONT_SIZE = "font-size", LINE_HEIGHT = "line-height",
 		UNKNOWN = "unknown";
 	
@@ -52,19 +52,21 @@
 	};
 	var _decoders = {
 		"-moz-transform" 	: _matrixDecoder,
-		"-webkit-transform" : _scaleDecoder,
+		"-webkit-transform" 	: _scaleDecoder,
 		"-o-transform" 		: _matrixDecoder,
-		"transform"			: _scaleDecoder	
+		"-ms-transform" 	: _matrixDecoder,
+		"transform"		: _scaleDecoder	
 	};
 	var _encoders = {
 		"-moz-transform" 	: _toScale,
-		"-webkit-transform" : _toScale,
+		"-webkit-transform"     : _toScale,
 		"-o-transform" 		: _toScale,
-		"transform"			: _toScale		
+		"-ms-transform"         : _toScale,
+		"transform"	        : _toScale		
 	};
 	
 	var _getZoomAndProperty = function(element) {
-		if (!ie) {
+		//if (true || !ie) {
 			for (var i in _decoders) {
 				try {
 					var v = element.css(i);
@@ -76,26 +78,26 @@
 				catch (e) { }
 			}
 			return [1, UNKNOWN];
-		}
-		else {
-			var z = element.css(ZOOM);
-			try { z = parseFloat(z); }
-			catch (e) {
-				z = 1;
-			}
-			if (isNaN(z)) z = 1;
-			return [z, ZOOM];
-		}
+		//}
+		//else {
+		//	var z = element.css(ZOOM);
+		//	try { z = parseFloat(z); }
+		//	catch (e) {
+		//		z = 1;
+		//	}
+		//	if (isNaN(z)) z = 1;
+		//	return [z, ZOOM];
+		//}
 	};
 	
 	var _getOffset = function(element) {
 		var scale = _getZoomAndProperty(element);
 		var o = element.offset();
-		if (ie || WEBKIT_TRANSFORM == scale[1] /*|| O_TRANSFORM == scale[1] */|| scale[0] == 1) return o;
-		else {
+	//	if (ie || WEBKIT_TRANSFORM == scale[1] /*|| O_TRANSFORM == scale[1] */|| scale[0] == 1) return o;
+	//	else {
 			var l = o.left + (element.outerWidth() * (1 - scale[0]) / 2), t = o.top + (element.outerHeight() * (1 - scale[0]) / 2);
 			return {left:l, top:t};
-		}
+	//	}
 	};
 	
 	/**
@@ -105,11 +107,11 @@
 	 */
 	var _setOffset = function(element, offset) {
 		var scale = _getZoomAndProperty(element);
-		if (ie || WEBKIT_TRANSFORM == scale[1] || /*O_TRANSFORM == scale[1] ||*/ scale[0] == 1) return element.offset(offset);
-		else {
+		//if (ie || WEBKIT_TRANSFORM == scale[1] || /*O_TRANSFORM == scale[1] ||*/ scale[0] == 1) return element.offset(offset);
+		//else {
 			var l = offset.left - (element.outerWidth() * (1 - scale[0]) / 2), t = offset.top - (element.outerHeight() * (1 - scale[0]) / 2);
 			return element.offset({left:l, top:t});			
-		}
+		//}
 	};
 	
 	var jsZoom = window.jsZoom = {
@@ -118,14 +120,14 @@
 		 * sets the current zoom for the given element.
 		 */
 		set : function(element, zoomAsADecimal) {
-			if (!ie) {
+			//if (true || !ie) {
 				for (var i in _encoders) {
 					element.css(i, _encoders[i](zoomAsADecimal));
 				}
-			}
-			else {
-				element.css(ZOOM, zoomAsADecimal);
-			}
+			//}
+			//else {
+			//	element.css(ZOOM, zoomAsADecimal);
+			//}
 		},			
 		
 		/**
@@ -686,8 +688,8 @@ var PreviewPane = window.PreviewPane = function(params) {
 	
 	var preview = document.createElement("div");	
 	preview = $(preview);
-	previewContainer.append(preview);	
 	preview.addClass("preview");
+	previewContainer.append(preview);	
 	
 	_reposition();
 	
@@ -1543,13 +1545,14 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		_canvas.id="chartCanvas";
 		chartDiv.append(_canvas);
 		
-		if (ie) {
-			// for IE we have to set a big canvas size. actually you can override this, too, if 1200 pixels
-		        // is not big enough for the biggest connector/endpoint canvas you have at startup.
-		        //jsPlumb.sizeCanvas(canvas, 0, 0, DEFAULT_NEW_CANVAS_SIZE, DEFAULT_NEW_CANVAS_SIZE);
-		        _canvas.width = 2000;_canvas.height = 2000;
-		        _canvas = G_vmlCanvasManager.initElement(_canvas);
-		}
+		// Only support IE9
+		//if (ie && false) {
+		//	// for IE we have to set a big canvas size. actually you can override this, too, if 1200 pixels
+		//        // is not big enough for the biggest connector/endpoint canvas you have at startup.
+		//        //jsPlumb.sizeCanvas(canvas, 0, 0, DEFAULT_NEW_CANVAS_SIZE, DEFAULT_NEW_CANVAS_SIZE);
+		//        _canvas.width = 2000;_canvas.height = 2000;
+		//        _canvas = G_vmlCanvasManager.initElement(_canvas);
+		//}
         
 		_canvas.width = chartDiv.width(); 
 		_canvas.height = chartDiv.height();
