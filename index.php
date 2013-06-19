@@ -29,8 +29,9 @@
 
 
 	<!-- Yay jQuery! Yay jQuery-ui! -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://localhost/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://localhost/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+/var/www/ajax/libs/jquery/1.9.0/jquery.min.js
 
 	<script type="text/javascript" src="js/jquery.mousewheel.js"></script><!-- From here: https://github.com/brandonaaron/jquery-mousewheel/blob/master/jquery.mousewheel.js --> 
 
