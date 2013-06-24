@@ -169,10 +169,10 @@ label {
 }
 
 .male span {
-    background: url("../img/gender.png") no-repeat scroll center top transparent;
+    background: url("gender.png") no-repeat scroll center top transparent;
 }
 .female span {
-    background: url("../img/gender.png") no-repeat scroll center bottom transparent;
+    background: url("gender.png") no-repeat scroll center bottom transparent;
 }
 
 .couple {
@@ -226,54 +226,4 @@ label {
     cursor:move;
     z-index:0;
 }
-
-.chkOrientation {
-    display: inline-block;
-    border: outset 2px black;
-    padding: 0px 2px;
-    margin: 2px;
-    cursor: pointer;
-}
-
-.chartControls {
-    display: inline-block;
-    float: right;
-}
-
-.chartControls .compass {
-    background-image: url("../img/slider.png");
-    height: 79px;
-    z-index: 10000;
-    width: 79px;
-    position: relative;
-    margin: 15px 15px auto auto;
-}
-
-.chartControls .pan {
-    cursor: pointer;
-    height: 22px;
-    position: absolute;
-    width: 22px;
-}
-.chartControls .pan.up {
-    left: 28px;
-    top: 2px;
-}
-.chartControls .pan.right {
-    left: 2px;
-    top: 28px;
-}
-.chartControls .pan.down {
-    left: 28px;
-    top: 54px;
-}
-.chartControls .pan.left {
-    left: 54px;
-    top: 28px;
-}
-.chartControls .pan.center {
-    top:  28px;
-    left:  28px;
-}
-
 
