@@ -29,7 +29,6 @@
         <link href="css/ui/ui.reset.css" rel="stylesheet" media="all" /> 
         <link href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
         <link rel="stylesheet" href="css/style.css"/>
-        <link rel="stylesheet" href="css/pedigree-viewer.css"/>
         <style type='text/css'>
             #treediv {
             width: 50%;

@@ -39,16 +39,49 @@ label { cursor:pointer; }
 ._jsPlumb_connector, _jsPlumb_endpoint{visibility:hidden;}
 
 /* Gender Icons & Profile pics */
+
 .male, .female {
     padding: 5px;
 }
+
+.male {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
+.female {
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+}
+
+.male:hover {
+    background-color: #a9daf1;
+}
+
+.female:hover {
+    background-color: #f6c7f5;
+}
+
 .male span, .female span {
     display: block;
     float: left;
-    width: 16px;
     height: 12px;
-    margin-right: 1px;
+    width: 12px;
+    margin-top:  3px;
+    overflow: hidden;
+    margin-right: 4px;
+    position: relative;
+    top: -3px;
 }
+
 .male span {
     background: url('gender.png') top right no-repeat;
 }
@@ -56,46 +89,7 @@ label { cursor:pointer; }
     background: url('gender.png') top left no-repeat;
 }
 
-.male:hover {
-    background-color: #a9daf1;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -webkit-border-radius-top-left: 5px;
-    -moz-border-radius-topright: 5px;
-    -webkit-border-radius-top-right: 5px;
-}
-.female:hover {
-    background-color: #a9daf1;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -webkit-border-radius-bottom-left: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -webkit-border-radius-bottom-left: 5px;
-}
 
-
-
-
-
-
-
-#info {
-    display:none;
-    z-index:10;
-    width:18em;
-    height: 200px;
-    font-size:95%;
-    padding:0.7em;
-    position: relative;
-}
-#wait {
-    text-align:center;
-    font-size:200%;
-    color:#567;
-    line-height: 600px;
-}
 .couple {
     width:15em;
     border:1px solid #c2bdaf;
@@ -148,9 +142,22 @@ label { cursor:pointer; }
     border-color: #666;
 }
 
-.hover {
-    background-color:#dcecf3;
+#info {
+    display:none;
+    z-index:10;
+    width:18em;
+    height: 200px;
+    font-size:95%;
+    padding:0.7em;
+    position: relative;
 }
+#wait {
+    text-align:center;
+    font-size:200%;
+    color:#567;
+    line-height: 600px;
+}
+
 #pedigree {
     height: 600px;	
     background: #fff;
@@ -173,32 +180,6 @@ label { cursor:pointer; }
 
 #page-content-wrapper {
     margin: 0 !important; padding: 0 !important;
-}
-/* Gender Icons & Profile pics */
-.male, .female {
-    padding: 5px;
-
-}
-.male span, .female span {
-    display: block;
-    float: left;
-    width: 16px;
-    height: 12px;
-    margin-right: 1px;
-}
-.male span {
-    background: url('gender.png') top right no-repeat;
-}
-.female span {
-    background: url('gender.png') top left no-repeat;
-}
-.male:hover, .female:hover {
-    background-color: #a9daf1;
-}
-.unselectable {
-    user-select: none; /* CSS3 */
-    -moz-user-select: none;
-    -khtml-user-select: none;
 }
 
 #chartPreviewContainer { 
@@ -262,4 +243,17 @@ a.btn {
     position:relative;
 }
 
+#page_wrapper {
+	background: white;
+	font-family:Arial,Verdana,Sans-Serif;
+	font-size:0.7em;
+}
+
+#page_wrapper .clear {
+	clear:both;
+}
+
+#page_wrapper {
+	position:relative;
+}
 
