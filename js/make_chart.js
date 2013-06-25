@@ -4,7 +4,7 @@ function makeStChart(json){
     chart.load({
         chartDiv : "chart",
         chartContainer : "chartContainer",
-        chartType:'ancestor',
+        chartType:'bowtie',
         orientation: 'horizontal',
         defaults:{						
             highlightPaintStyle:{ lineWidth:12, strokeStyle:'#736d66' } // this is for highlighting connectors
