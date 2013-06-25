@@ -27,7 +27,7 @@
         <title>HTML5 Pedigree-Viewer Demo</title>
 
         <link href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/tree.css"/>
         <style type='text/css'>
             #treediv {
             width: 50%;
@@ -43,21 +43,27 @@
         <div id='about'>
             <!-- This is the box the actual tree goes in -->
             <h1>HTML5 Pedigree-Viewer Demo</h1>
-            <h2>A Pedigree-Viewer Demo</h2>
+            <h2>Features</h2>
             <p>
-                This is a bowtie view of part of my family tree. Other possible views include ancestors only and descendants only. 
+                <ul>
+                    <li>jQuery plugin</li>
+                    <li>Zooming with slider or mousewheel</li>
+                    <li>Panning with mouse or arrow buttons</li>
+                    <li>Vertical or Horizontal Orientation</li>
+                    <li>Draggable mini-map to quickly move about the tree</li>
+                    <li>Ancestor and Descendancy Highlighting</li>
+                    <li>Ancestor, Bowtie and Descendant Views</li>
+                </ul>
             </p>
             <h2>Download It</h2>
             <p>
-                Like what you see? Download the code for yourself!
-                <a href='https://github.com/stuporglue/Pedigree-Viewer'>Dev Code</a> | 
-                <a href='https://github.com/dovy/Pedigree-Viewer'>Stable Code</a>.
+                <a href='https://github.com/dovy/Pedigree-Viewer'>Like what you see? Download the code for yourself!</a>
             </p>
             <h2>About</h2>
             <p>
                 Pedigree-Viewer is an HTML/JavaScript pedigree viewer created by <a href='http://rtcollab.com/'>Real Time Collaboration</a>.	
                 It loads the family tree structure from JSON via an AJAX call. This tree's source is <a href='data.json'>data.json</a>. Also 
-                included is a PHP class and wrapper which works with <a href='https://github.com/stuporglue/php-gedcom'>PHP-Gedcom</a> to 
+                included is a PHP class and wrapper which works with <a href='https://github.com/stuporglue/ged2json'>ged2json</a> to 
                 create the needed JSON from a GEDCOM file as needed.  
             </p>
             <h2>Current Issues</h2>

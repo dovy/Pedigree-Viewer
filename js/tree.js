@@ -49,7 +49,7 @@
             treehtml += '                </a>';
             treehtml += '                <div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px; ">';
             treehtml += '                    <div style="left: 16px; top: 17px; width: 59px; height: 62px; overflow-x: hidden; overflow-y: hidden; position: absolute; ">';
-            treehtml += '                        <img style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; -webkit-user-drag: none; " src="css/compas.png">';
+            treehtml += '                        <div class="pvcompas"></div>';
             treehtml += '                        </div>';
             treehtml += '                    </div>';
             treehtml += '                    <div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px; " id="compass" title="">';
@@ -59,10 +59,8 @@
             treehtml += '                        <div style="position: absolute; left: 36px; top: 57px; width: 18px; height: 18px; cursor: pointer; " rel="down" class="pan" title="Pan down"></div>';
             treehtml += '                        <div style="position: absolute; left: 36px; top: 37px; width: 18px; height: 18px; cursor: pointer; " id="centerFocus" title="Return to the focus couple"></div>';
             treehtml += '                    </div>';
-            treehtml += '                    <div style="top: 80px; padding-left: 40px;position:absolute;width: 100%;">';
-            treehtml += '                        <div id="slider" class="ui-slider ui-widget ui-widget-content ui-corner-all ui-slider-vertical">';
-            treehtml += '                            <a href="#" class="ui-slider-handle ui-state-default ui-corner-all" ></a>';
-            treehtml += '                        </div>';
+            treehtml += '                    <div id="slider" class="ui-slider ui-widget ui-widget-content ui-corner-all ui-slider-vertical">';
+            treehtml += '                        <a href="#" class="ui-slider-handle ui-state-default ui-corner-all" ></a>';
             treehtml += '                    </div>';
             treehtml += '                </div>';
             treehtml += '                <div class="clear"></div>';
@@ -82,11 +80,35 @@
             };
 
             $.getJSON(this.parserurl,params,function(json){
-                var tmp;
+                var data = {data:{focus:null,people:[]}};
+                var person;
+                var ids = [];
+                for(var i = 0;i<json.length;i++){
+                    person = {};
+                    person.id = json[i].id;
+                    ids.push(json[i].id);
 
-                // for(var i = 0;i<json.features.length;i++){
-                // }
-                makeStChart(json);
+                    person.fn = json[i].name;
+                    // sn: ,
+                    person.s = (json[i].gender == 'F' ? 'F' : 'M');
+                    if(typeof json[i].fathers != 'undefined'){
+                        person.f = json[i].fathers[0];
+                    }
+                    if(typeof json[i].mothers != 'undefined'){
+                        person.m = json[i].mothers[0];
+                    }
+                    if(typeof json[i].wife != 'undefined'){
+                        person.sp = json[i].wife[0];
+                    }else if(typeof json[i].husb != 'undefined'){
+                        person.sp = json[i].husb[0];
+                    }
+
+                    data.data.people.push(person);
+                }
+                ids.sort();
+
+                data.data.focus = ids[0];
+                makeStChart(data);
             });
         };
 

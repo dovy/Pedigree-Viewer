@@ -1,23 +1,54 @@
-{"data":{"focus":"I21","people":[{"id":"I21","fn":"Arthur James","sn":"Moore","s":"M","f":"I11","m":"I19","sp":"I47"}
-,{"sp":"I21","id":"I47","fn":"Marie Eleanor Ericka","sn":"Olson","s":"F","f":"I94","m":"I96"}
-,{"f":"I21","m":"I47","id":"I49","fn":"James R  .","sn":"Moore","s":"M"}
-,{"f":"I21","m":"I47","id":"I50","fn":"Arthur Robert","sn":"Moore","s":"M"}
-,{"f":"I21","m":"I47","id":"I48","fn":"Howard William","sn":"Moore","s":"M","sp":"I82"}
-,{"id":"I11","fn":"John J","sn":"Moore","s":"M","f":"I1","m":"I2","sp":"I22"}
-,{"sp":"I11","id":"I19","fn":"Delia","sn":"Craig","s":"F"}
-,{"sp":"I11","id":"I22","fn":"Loretta","sn":"Carter","s":"F"}
-,{"sp":"I48","id":"I82","fn":"Anna Adeline","sn":"Johnson","s":"F"}
-,{"id":"I1","fn":"Patrick","sn":"McGuinness","s":"M","sp":"I2"}
-,{"sp":"I1","id":"I2","fn":"Maria","sn":"Moran","s":"F"}
-,{"id":"I94","fn":"Peder Andreas Mathias","sn":"Olson","s":"M","f":"I83","m":"I97","sp":"I96"}
-,{"sp":"I94","id":"I96","fn":"Anna Lovisa","sn":"Andersson","s":"F","f":"I95","m":"I89"}
-,{"id":"I83","fn":"Ole Johannes","sn":"Andersen","s":"M","f":"I98","m":"I99","sp":"I97"}
-,{"sp":"I83","id":"I97","fn":"Pernelle","sn":"Pedersdr","s":"F","f":"I100","m":"I101"}
-,{"id":"I95","fn":"Anders","sn":"Olson","s":"M","f":"I102","sp":"I89"}
-,{"sp":"I95","id":"I89","fn":"Karolina","sn":"Ersdotter","s":"F"}
-,{"id":"I98","fn":"Anders","sn":"Jetmundsen","s":"M","sp":"I99"}
-,{"sp":"I98","id":"I99","fn":"Mette Carine","sn":"Zachariasdr","s":"F"}
-,{"id":"I100","fn":"Peder","sn":"Johannesen","s":"M","sp":"I101"}
-,{"sp":"I100","id":"I101","fn":"Marte","sn":"Pedersdotter","s":"F"}
-,{"id":"I102","fn":"Olov","sn":"Persson","s":"M"}
-]}}
+[
+    {"id":2001, "name":"Rebecca Carter", "fathers":[0], "mothers":[1], "gender":"F", "husb":[2008]},
+    {"id":2008, "name":"Andrew Jones", "fathers":[], "mothers":[], "gender":"M", "wife":[2001]},    
+    {"id":2009, "name":"Earl Jones", "fathers":[2008], "mothers":[2001], "gender":"M", "wife":[2010]},
+    {"id":2010, "name":"Denise Johnson", "fathers":[], "mothers":[], "gender":"F", "husb":[2009]},    
+    {"id":2011, "name":"Paul Jones", "fathers":[2008], "mothers":[2001], "gender":"M", "wife":[2012]},
+    {"id":2012, "name":"Heather Mott", "fathers":[], "mothers":[], "gender":"F", "husb":[2011]},        
+    {"id":2002, "name":"Abraham Carter", "fathers":[0], "mothers":[1], "gender":"M", "wife":[2003]},
+    {"id":2003, "name":"Sarah Smith", "fathers":[], "mothers":[], "gender":"F", "husb":[2002]},    
+    {"id":2004, "name":"Dovy Carter", "fathers":[2002], "mothers":[2003], "gender":"M", "wife":[2005]},
+    {"id":2005, "name":"Linda Sims", "fathers":[], "mothers":[], "gender":"F", "husb":[2004]},    
+    {"id":2006, "name":"Peter Carter", "fathers":[2002], "mothers":[2003], "gender":"M", "wife":[2007]},
+    {"id":2007, "name":"Mary Jones", "fathers":[], "mothers":[], "gender":"F", "husb":[2006]},     
+    {"id":0, "name":"Jared Carter", "fathers":[2], "mothers":[3], "gender":"M", "wife":[1]},
+    {"id":1, "name":"Lydia Ames", "fathers":[4], "mothers":[5], "gender":"F", "husb":[0]},		
+    {"id":2, "name":"Gideon Carter", "fathers":[6], "mothers":[7], "gender":"M", "wife":[3]},
+    {"id":3, "name":"Johanna Sims", "fathers":[], "mothers":[], "gender":"F", "husb":[2]},			
+    {"id":6, "name":"John Carter", "fathers":[12], "mothers":[13], "gender":"M", "wife":[7]},
+    {"id":7, "name":"Sarah Waterous", "fathers":[14], "mothers":[15], "gender":"F", "husb":[6]},  	
+    {"id":12, "name":"John Carter", "fathers":[16], "mothers":[17], "gender":"M", "wife":[13]},
+    {"id":13, "name":"Sarah Nettleton", "fathers":[18], "mothers":[19], "gender":"F", "husb":[12]},   	
+    {"id":14, "name":"Gideon Waterhouse", "fathers":[20], "mothers":[21], "gender":"M", "wife":[15]},
+    {"id":15, "name":"Rebecca Waterhouse", "fathers":[], "mothers":[], "gender":"F", "husb":[14]},   	
+    {"id":16, "name":"Robert Carter", "fathers":[], "mothers":[], "gender":"M", "wife":[17]},
+    {"id":17, "name":"Hannah Lucas", "fathers":[], "mothers":[], "gender":"F", "husb":[16]},	
+    {"id":18, "name":"Joseph Nettleton", "fathers":[], "mothers":[], "gender":"M", "wife":[19]},
+    {"id":19, "name":"Sarah Woodmansee", "fathers":[], "mothers":[], "gender":"F", "husb":[18]},	
+    {"id":20, "name":"Abraham II Waterhouse", "fathers":[], "mothers":[], "gender":"M", "wife":[21]},
+    {"id":21, "name":"Hannah Stark", "fathers":[], "mothers":[], "gender":"F", "husb":[20]},  				
+    {"id":4, "name":"Ithamer Ames", "fathers":[8], "mothers":[9], "gender":"M", "wife":[5]},
+    {"id":5, "name":"Hannah Clark", "fathers":[10], "mothers":[11], "gender":"F", "husb":[4]},	
+    {"id":8, "name":"Joseph Ames", "fathers":[22], "mothers":[23], "gender":"M", "wife":[9]},
+    {"id":9, "name":"Elizabeth Parker", "fathers":[24], "mothers":[25], "gender":"F", "husb":[8]},            	
+    {"id":10, "name":"William Clarke", "fathers":[26], "mothers":[27], "gender":"M", "wife":[11]},
+    {"id":11, "name":"Betsy Rogers", "fathers":[28], "mothers":[29], "gender":"F", "husb":[10]},									
+    {"id":22, "name":"William IV Ames", "fathers":[30], "mothers":[31],"gender":"M", "wife":[23]},
+    {"id":23, "name":"Elizabeth", "on":"D Jennings", "fathers":[32], "mothers":[33], "gender":"F", "husb":[22]},       
+    {"id":24, "name":"Jesse", "on":"Thomas Parker", "fathers":[], "mothers":[], "gender":"M", "wife":[25]},
+    {"id":25, "name":"Bathsheba  ", "fathers":[], "mothers":[], "gender":"F", "husb":[24]},	
+    {"id":26, "name":"Samuel Clarke", "fathers":[34], "mothers":[35], "gender":"M", "wife":[27]},
+    {"id":27, "name":"Hannah Wilcox", "fathers":[36], "mothers":[37], "gender":"F", "husb":[26]},  	
+    {"id":28, "name":"Joseph Rogers", "fathers":[38], "mothers":[39], "gender":"M", "wife":[29]},
+    {"id":29, "name":"Diadema Beckwith", "fathers":[], "mothers":[], "gender":"F", "husb":[28]},	
+    {"id":30, "name":"Williams Ames", "fathers":[], "mothers":[], "gender":"M", "wife":[31]},
+    {"id":31, "name":"Mary", "on":"D Hayward", "fathers":[], "mothers":[], "gender":"F", "husb":[30]},	
+    {"id":32, "name":"Richard Jennings", "fathers":[], "mothers":[], "gender":"M", "wife":[33]},
+    {"id":33, "name":"Mary Bassett", "fathers":[], "mothers":[], "gender":"F", "husb":[32]},	
+    {"id":34, "name":"Jeremiah Clarke", "fathers":[], "mothers":[], "gender":"M", "wife":[35]},
+    {"id":35, "name":"Ann Audley", "md":"Odlin", "fathers":[], "mothers":[], "gender":"F", "husb":[34]},	
+    {"id":36, "name":"Daniel Jr Wilcox", "fathers":[], "mothers":[], "gender":"M", "wife":[37]},
+    {"id":37, "name":"Hannah Cooke", "fathers":[], "mothers":[], "gender":"F", "husb":[36]},	
+    {"id":38, "name":"Joseph Rogers", "fathers":[], "mothers":[], "gender":"M", "wife":[39]},
+    {"id":39, "name":"Diadema Beckwith", "fathers":[], "mothers":[], "gender":"F", "husb":[38]} 
+]

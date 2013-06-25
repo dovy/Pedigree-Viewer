@@ -1,24 +1,5 @@
 /*
-Format of data.json
+    Format of data.json now corresponds to output produced by https://github.com/stuporglue/ged2json
 
-{
-    "data" : {
-	"focus" : Id of focus individual. String or int,
-	"peeople : [ // Array of people
-	    {
-		'id' : Id of individual. String or int,
-		'fn' : First name, 
-		'sn' : Surname,
-		's'  : Sex. M or F. Capitalized.,
-		'sp' : Spouse Id. Currently only one spouse Id is supported,
-		'f'  : Father Id,
-		'm'  : Mother Id
-	    },
-	    {...},
-	    ...
-	    {...}
-	]
-    }
-}
-
+    Output can still be static, as in this example, but it will also work with ged2json.
 */
