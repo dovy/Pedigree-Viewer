@@ -26,7 +26,6 @@
         <meta charset="utf-8"/>
         <title>HTML5 Pedigree-Viewer Demo</title>
 
-        <link href="css/ui/ui.reset.css" rel="stylesheet" media="all" /> 
         <link href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
         <link rel="stylesheet" href="css/style.css"/>
         <style type='text/css'>

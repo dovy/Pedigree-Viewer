@@ -128,6 +128,7 @@ label { cursor:pointer; }
 
 }
 .blank-couple { 
+    display:none;
     border-style: dashed; 
     opacity: .7;
     filter: alpha(opacity=70);
