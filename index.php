@@ -23,113 +23,80 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
 -->
     <head>
-	<meta charset="utf-8">
-	<title>HTML5 Pedigree-Viewer Demo</title>
-	<link href="css/pedigree-viewer.css" rel="stylesheet" media="all">
+        <meta charset="utf-8"/>
+        <title>HTML5 Pedigree-Viewer Demo</title>
 
-
-	<!-- Yay jQuery! Yay jQuery-ui! -->
-	<script type="text/javascript" src="http://localhost/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<script type="text/javascript" src="http://localhost/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-/var/www/ajax/libs/jquery/1.9.0/jquery.min.js
-
-	<script type="text/javascript" src="js/jquery.mousewheel.js"></script><!-- From here: https://github.com/brandonaaron/jquery-mousewheel/blob/master/jquery.mousewheel.js --> 
-
-	<script type="text/javascript" src="js/pedigree-viewer.js"></script> 
-
-	<!-- Kick it off once everything is ready -->
-	<script type="text/javascript"> 
-		$(document).ready(function(){
-		    chart = drawChart('data.json');
-		});
-	</script> 	
-	<!-- 
-	<script type='text/javascript'>
-	    $(document).ready(function(){
-		drawChart('<?="makeJson.php" . http_build_query($_GET);?>');
-	    });
-	</script>
-	-->
-	<style type='text/css'>
-	    #page-content-wrapper {
-		width: 50%;
-		min-width: 650px;
-		float: right;
-		margin-bottom: 20px;
-	    }
-	</style>
+        <link href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
+        <link rel="stylesheet" href="css/tree.css"/>
+        <style type='text/css'>
+            #treediv {
+            width: 50%;
+            min-width: 650px;
+            float: right;
+            margin-bottom: 20px;
+            }
+        </style>
     </head>
     <body>
-	<div id="page_wrapper">
-	    <div class="fixed" id="page-layout"><div id="page-content">
+        <div id='treediv'></div>
 
-	    <!-- This is the box the actual tree goes in -->
-	    <div id="page-content-wrapper" class="unselectable">
-		<div id="tree" class="ui-corner-all">
-		    <div id="chartContainer"> 
-			<div class='chartControls'>
-			<span class='chkOrientation' rel='vertical'>Vertical</span> | <span class='chkOrientation' rel='horizontal'>Horizontal</span>
-			    <div class="compass" title="">
-				<div rel="up" class="pan up" title="Pan up"></div>
-				<div rel="left" class="pan left" title="Pan left"></div>
-				<div rel="right" class="pan right" title="Pan right"></div>
-				<div rel="down" class="pan down" title="Pan down"></div>
-				<div rel='center' class="pan center" title="Return to the focus couple"></div>
-			    </div>
-			    <div class="slider"></div>  
-			</div>
-			<div id="chartPreviewContainer"> 
-			    <div id="chartPreview"></div> 
-			</div> 
-			<div id="chart"></div> 
-			<div id="wait">please wait...loading</div> 
-		    </div> 
-		</div>
-	    </div>
-	    <h1>HTML5 Pedigree-Viewer Demo</h1>
-	    <h2>A Pedigree-Viewer Demo</h2>
-	    <p>
-		This is a bowtie view of part of my family tree. Other possible views include ancestors only and descendants only. 
-	    </p>
-	    <h2>Download It</h2>
-	    <p>
-		Like what you see? Download the code for yourself!
-		<a href='https://github.com/stuporglue/Pedigree-Viewer'>Dev Code</a> | 
-		<a href='https://github.com/dovy/Pedigree-Viewer'>Stable Code</a>.
-	    </p>
-	    <h2>About</h2>
-	    <p>
-		Pedigree-Viewer is an HTML/JavaScript pedigree viewer created by <a href='http://rtcollab.com/'>Real Time Collaboration</a>.	
-		It loads the family tree structure from JSON via an AJAX call. This tree's source is <a href='data.json'>data.json</a>. Also 
-		included is a PHP class and wrapper which works with <a href='https://github.com/stuporglue/php-gedcom'>PHP-Gedcom</a> to 
-		create the needed JSON from a GEDCOM file as needed.  
-	    </p>
-	    <h2>Current Issues</h2>
-	    <p>
-<a href='https://github.com/dovy/Pedigree-Viewer/issues?state=open'>Bugs are now tracked on GitHub</a>.
-	    </p>
-	    <h2>Support</h2>
-	    <p>
-		No official support is being offered by Real Time Collaboration. 
-		You can <a href='https://github.com/stuporglue/'>contact me</a> and I will assist as I can.
-	    </p>
-	    <h2>License</h2>
-	    <p>
-		Pedigree-Viewer is being licensed under the <a href='http://www.gnu.org/licenses/agpl-3.0.html'>Affero General Public License</a>, an open-source license. 
-	    </p>
-				</div>
-	    </div>
-	</div>
-	<div id="slider"></div>  
-	<div id="info"></div>		
-	<script type="text/javascript">
-	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	    var pageTracker = _gat._getTracker("UA-1692489-5");
-	    pageTracker._initData();
-	    pageTracker._trackPageview();
-	</script>
+        <div id='about'>
+            <!-- This is the box the actual tree goes in -->
+            <h1>HTML5 Pedigree-Viewer Demo</h1>
+            <h2>Features</h2>
+            <p>
+                <ul>
+                    <li>jQuery plugin</li>
+                    <li>Zooming with slider or mousewheel</li>
+                    <li>Panning with mouse or arrow buttons</li>
+                    <li>Vertical or Horizontal Orientation</li>
+                    <li>Draggable mini-map to quickly move about the tree</li>
+                    <li>Ancestor and Descendancy Highlighting</li>
+                    <li>Ancestor, Bowtie and Descendant Views</li>
+                </ul>
+            </p>
+            <h2>Download It</h2>
+            <p>
+                <a href='https://github.com/dovy/Pedigree-Viewer'>Like what you see? Download the code for yourself!</a>
+            </p>
+            <h2>About</h2>
+            <p>
+                Pedigree-Viewer is an HTML/JavaScript pedigree viewer created by <a href='http://rtcollab.com/'>Real Time Collaboration</a>.	
+                It loads the family tree structure from JSON via an AJAX call. This tree's source is <a href='data.json'>data.json</a>. Also 
+                included is a PHP class and wrapper which works with <a href='https://github.com/stuporglue/ged2json'>ged2json</a> to 
+                create the needed JSON from a GEDCOM file as needed.  
+            </p>
+            <h2>Current Issues</h2>
+            <p>
+                <a href='https://github.com/dovy/Pedigree-Viewer/issues?state=open'>Bugs are now tracked on GitHub</a>.
+            </p>
+            <h2>Support</h2>
+            <p>
+                No official support is being offered by Real Time Collaboration. 
+                You can <a href='https://github.com/stuporglue/'>contact me</a> and I will assist as I can.
+            </p>
+            <h2>License</h2>
+            <p>
+                Pedigree-Viewer is being licensed under the <a href='http://www.gnu.org/licenses/agpl-3.0.html'>Affero General Public License</a>, an open-source license. 
+            </p>
+        </div>
+
+        <script type="text/javascript" src="js/excanvas.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/sharing-time.js"></script>
+        <script type="text/javascript" src="js/sharing-time-ui.js"></script>
+        <script type="text/javascript" src="js/sharing-time-chart.js"></script>
+        <script type="text/javascript" src="js/jsZoom.js"></script>
+        <script type="text/javascript" src="js/make_chart.js"></script>
+        <script type="text/javascript" src="js/tree.js"></script>
+
+        <script type="text/javascript"> 
+            $(document).ready(function() { 
+            pt = $('#treediv').pvTree('data.json','family.ged');
+            });
+        </script> 	
     </body>
 </html>
+
