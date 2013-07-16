@@ -26,8 +26,8 @@
         <meta charset="utf-8"/>
         <title>HTML5 Pedigree-Viewer Demo</title>
 
-        <link href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
-        <link rel="stylesheet" href="css/tree.css"/>
+        <link type='text/css' href="css/ui/ui.slider.css" rel="stylesheet" media="all" /> 
+        <link type='text/css' rel="stylesheet" href="css/tree.css"/>
         <style type='text/css'>
             #treediv {
             width: 50%;
@@ -44,7 +44,6 @@
             <!-- This is the box the actual tree goes in -->
             <h1>HTML5 Pedigree-Viewer Demo</h1>
             <h2>Features</h2>
-            <p>
                 <ul>
                     <li>jQuery plugin</li>
                     <li>Zooming with slider or mousewheel</li>
@@ -54,7 +53,6 @@
                     <li>Ancestor and Descendancy Highlighting</li>
                     <li>Ancestor, Bowtie and Descendant Views</li>
                 </ul>
-            </p>
             <h2>Download It</h2>
             <p>
                 <a href='https://github.com/dovy/Pedigree-Viewer'>Like what you see? Download the code for yourself!</a>
@@ -94,7 +92,12 @@
 
         <script type="text/javascript"> 
             $(document).ready(function() { 
-            pt = $('#treediv').pvTree('data.json','family.ged');
+                pt = $('#treediv').pvTree('data.json','family.ged',{
+                    personClick: function(e){
+                        var id = e.target.id.replace('person_','');
+                        pt.refocus(id);
+                    }
+                });
             });
         </script> 	
     </body>
