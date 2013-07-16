@@ -261,7 +261,7 @@ var StandardChartRenderer = function(options) {
 	AbstractRenderer.call(this, options);	
 	var self = this;
 	var _personStyles = { 
-		'fullname': function(p) { return "<div id='" + self.personIdGenerator(p) + "' class='" + self.defaults.classes.individual + " " + (MALE == p.s ? self.defaults.classes.male : FEMALE == p.s ? self.defaults.classes.female : "") + " chartperson' rel='" + p.id + "'><span>&nbsp;</span>" + _renderName(p) + "</div>" },
+		'fullname': function(p) { return "<div id='" + self.personIdGenerator(p) + "' class='" + self.defaults.classes.individual + " " + (MALE == p.s ? self.defaults.classes.male : FEMALE == p.s ? self.defaults.classes.female : "") + " chartperson' rel='" + p.id + "'><span>&nbsp;</span>" + _renderName(p) + "</div>";},
 		'withspouse' : function(p) {
 			var s = p.spouse ? p.spouse : p.sp ? sharingTime.findPerson(p.sp) : null;
 			var r = _personStyles[FULLNAME](p);
@@ -280,13 +280,13 @@ var StandardChartRenderer = function(options) {
 			return '';
 		},
 		'father' : function(p) {
-			if (p.f != null) {
+			if (p.f !== null) {
 				return 'Father: ' + _formatPerson(sharingTime.findPerson(p.f), FULLNAME);
 			}
 			return '';
 		},
 		'mother' : function(p) {
-			if (p.m != null) {
+			if (p.m !== null) {
 				return 'Mother: ' + _formatPerson(sharingTime.findPerson(p.m), FULLNAME);
 			}
 			return '';
@@ -312,7 +312,7 @@ var StandardChartRenderer = function(options) {
 	};
 	var _renderName = function(p) {
 		var n = p.fn && p.fn.length > 0 ? p.fn :  "&nbsp;";
-		n = n + ' ' + (p.sn ? p.sn.toUpperCase() : "&nbsp;")
+		n = n + ' ' + (p.sn ? p.sn.toUpperCase() : "&nbsp;");
 		return n;
 	};
 	/**
@@ -460,10 +460,10 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		try { id = person["id"];		 	 }
 		catch (e) { } //this is an IE catching bug; it moans about person.s being undefined for some reason!
 		
-		if ( s != null && s == MALE) {
+		if ( s !== null && s == MALE) {
 			id = _params.ids.couple + id;
 		}
-		else if (FEMALE == s && person.spouse != null) {
+		else if (FEMALE == s && person.spouse !== null) {
 			id = _params.ids.couple + person.spouse.id;
 		}
 		else 
@@ -538,7 +538,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	var chartTypes = {
 
 		"ancestor": function(person, _idx, drawFunction, slots, connections) {			
-			var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+			var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 			var _oneLevel = function(person, idx, accumulator) {				
 				var c = _getSlot(slots, idx);
 				var p  = person || focus;					
@@ -586,7 +586,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		},
 		
 		"descendant": function(person, _idx, drawFunction, slots, connections) {
-			var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+			var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 			var _oneLevel = function(person, idx) {
 				var c = _getSlot(slots, idx);
 				var p  = person || focus;
@@ -613,41 +613,26 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	};
 
 	/**
-	 * returns a summary of the given list of arrays, telling you which array was the longest, and
-	 * how many elements were in it.
-	 */
-	var _getSlotInfo = function(slots) {
-		var idx = -1, size = 0;
-		for (var i = 0; i < slots.length; i++) {				
-			if (slots[i].length > size) {
-				idx = i + 0;
-				size = slots[i].length + 0; 
-			}
-		}
-		return { index:idx , size:size };
-	};
-	
-	/**
 	 * positions all the elements in a chart.  this code is shared by all the different chart types;
 	 * we just need some params and an array of 'slots' (lists of the people in each level of the
 	 * hierarchy). 
 	 */
 	var _positionChart = function(slots) {
+        var i,j,offsets;
 		var co = chartDiv.offset();
 		var zoom = _params.zoom || 1;
 		
-		var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+		var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 		var slot = 0, slotLengths = [];
 		var slotStep = horizontal ? _params.dimensions.horizontalSlotStep : _params.dimensions.verticalSlotStep;
-		var slotInfo = _getSlotInfo(slots);
 		
 		// adjust position, 1st pass
-		for (var i = 0; i < slots.length; i++) {
+		for (i = 0; i < slots.length; i++) {
 			var locator = 0;
 			var largestStepIndex = -1, largestStepSize = 0;
 			var locatorStep = horizontal ? _params.dimensions.horizontalLocatorStep : _params.dimensions.verticalLocatorStep;				
-			for (var j = 0; j < slots[i].length; j++) {
-				var offsets = horizontal ? {left:slot,top:locator} : {left:locator,top:slot};
+			for (j = 0; j < slots[i].length; j++) {
+				offsets = horizontal ? {left:slot,top:locator} : {left:locator,top:slot};
 				var div = $("#" + _getDivId(slots[i][j]));
 				
 				offsets.left = ((offsets.left /** zoom*/) + co.left) ;
@@ -663,33 +648,37 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			slotLengths.push(locator);
 			slot = slot + (largestStepSize/*/zoom*/) + Math.min(slotStep, (slotStep /** zoom*/));  // shoulnd't this take element dimensions into account?
 		}
-		// adjust position, 2nd pass.  this centers everything with respect to the level
-		// in the hierarchy that has the most people.
-		for (var i = 0; i < slots.length; i++) {
-			var d = slotLengths[slotInfo.index] - slotLengths[i];
-			d = d / 2;
-			for (var j = 0; j < slots[i].length; j++) {
-				var p = $("#" + _getDivId(slots[i][j]));
-				var o = p.offset();
-				var offsets = horizontal ? {left:o.left,top:o.top + (d /** zoom*/)} : {left:o.left + (d /** zoom*/),top:o.top};
-				p.offset(offsets);
-			}
-		}
-		
+
+        var maxSlotVal = Math.max.apply(Math,slotLengths);
+	
 		//single canvas		
 		// adjust container size to fit snugly around the chart.		
 		if (horizontal) {
 			chartDiv.width(slot /** zoom*/);
-			chartDiv.height(slotLengths[slotInfo.index] /** zoom*/);
+			chartDiv.height(maxSlotVal);
 		}
 		else { 
 			chartDiv.height(slot /** zoom*/);
-			chartDiv.width(slotLengths[slotInfo.index] /** zoom*/);
+			chartDiv.width(maxSlotVal);
 		}				
 		
 		_canvas.width = chartDiv.width(); 
 		_canvas.height = chartDiv.height();
-	};
+
+
+		// adjust position, 2nd pass.  this centers everything with respect to the level
+		// in the hierarchy that has the most people.
+		for (i = 0; i < slots.length; i++) {
+			var d = maxSlotVal - slotLengths[i];
+			d = d / 2;
+			for (j = 0; j < slots[i].length; j++) {
+				var p = $("#" + _getDivId(slots[i][j]));
+				var o = p.offset();
+				offsets = horizontal ? {left:o.left,top:o.top + (d /** zoom*/)} : {left:o.left + (d /** zoom*/),top:o.top};
+				p.offset(offsets);
+			}
+		}
+    };
 	/**
 	 * wrappers for positioning functions.  for horizontal, ancestor chart passes straight through and for
 	 * vertical it flips the order of the hierarchy first; descendants does the opposite; bowtie chart concats the slots from
@@ -704,17 +693,18 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			_positionChart(slots);			
 		},
 		"bowtie" : function(slots) {			
+            var bSlots;
 			var dSlots = slots[0].slice(0);
 			var aSlots = slots[1].slice(0);
-			var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+			var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 			if (horizontal) {
 				dSlots.splice(dSlots.length - 1, 1);			
-				var bSlots = dSlots.concat(aSlots);
+				bSlots = dSlots.concat(aSlots);
 				_positionChart(bSlots);
 			}
 			else {
 				aSlots.splice(aSlots.length - 1, 1);			
-				var bSlots = aSlots.concat(dSlots);
+				bSlots = aSlots.concat(dSlots);
 				_positionChart(bSlots);
 			}
 		}
@@ -723,26 +713,28 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	var _chartCenteringPadding = 20;
 	var chartCenteringTypes = {
 		"ancestor":function(person, id, personOffset, personWidth, personHeight, containerWidth, containerHeight, containerOffset, chartWidth, chartHeight, chartOffset) {
+            var adjustLeft,adjustTop;
 			if (_params.orientation == "horizontal") {
-				var adjustLeft = containerOffset.left - (chartOffset.left) + 20;				
-				var adjustTop = containerOffset.top + (containerHeight / 2) - (personOffset.top + (personHeight / 2));
+				adjustLeft = containerOffset.left - (chartOffset.left) + 20;				
+				adjustTop = containerOffset.top + (containerHeight / 2) - (personOffset.top + (personHeight / 2));
 				chartDiv.animate({left:"+=" + adjustLeft + "px", top:"+=" + adjustTop + "px"}, {step:self.fireUpdate});
 			}
 			else {
-				var adjustLeft = containerOffset.left + (containerWidth / 2) - (personOffset.left + (personWidth / 2));
-				var adjustTop = containerOffset.top + containerHeight - (chartOffset.top + chartHeight + 20);
+				adjustLeft = containerOffset.left + (containerWidth / 2) - (personOffset.left + (personWidth / 2));
+				adjustTop = containerOffset.top + containerHeight - (chartOffset.top + chartHeight + 20);
 				chartDiv.animate({left:"+=" + adjustLeft + "px", top:"+=" + adjustTop + "px"}, {step:self.fireUpdate});
 			}
 		},
 		"descendant":function(person, id, personOffset, personWidth, personHeight, containerWidth, containerHeight, containerOffset, chartWidth, chartHeight, chartOffset) {
+            var adjustLeft,adjustTop;
 			if (_params.orientation == "horizontal") {
-				var adjustLeft = containerOffset.left + (containerWidth) - (chartOffset.left + (chartWidth) - 10);
-				var adjustTop = containerOffset.top + (containerHeight / 2) - (personOffset.top + (personHeight / 2));
+				adjustLeft = containerOffset.left + (containerWidth) - (chartOffset.left + (chartWidth) - 10);
+				adjustTop = containerOffset.top + (containerHeight / 2) - (personOffset.top + (personHeight / 2));
 				chartDiv.animate({left:"+=" + adjustLeft + "px", top:"+=" + adjustTop + "px"}, {step:self.fireUpdate});
 			}
 			else {
-				var adjustLeft = containerOffset.left + (containerWidth / 2) - (personOffset.left + (personWidth / 2));
-				var adjustTop = containerOffset.top - (chartOffset.top) + 20;
+				adjustLeft = containerOffset.left + (containerWidth / 2) - (personOffset.left + (personWidth / 2));
+				adjustTop = containerOffset.top - (chartOffset.top) + 20;
 				chartDiv.animate({left:"+=" + adjustLeft + "px", top:"+=" + adjustTop + "px"}, {step:self.fireUpdate});
 			}
 		},
@@ -767,7 +759,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		
 			var id1 = _getDivId(connection.p1), id2 = _getDivId(connection.p2);
 			var points;
-			if (connectionPointCache[id1 + "_" + id2] == null) {			
+			if (connectionPointCache[id1 + "_" + id2] === null) {			
 				var d1 = $("#" + id1), d2 = $("#" + id2);
 				var o1 = d1.offset(), o2 = d2.offset(), w1 = d1.outerWidth(), w2 = d2.outerWidth(), h1 = d1.outerHeight(), h2 = d2.outerHeight();
 				points = drawFunc(connection, o1, o2, w1, w2, h1, h2);
@@ -799,17 +791,17 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 				
 		var connectionFunction = chartConnectionTypes[_params.chartType](_connections);
 		highlightList = highlightList || [];
-		var highlightedConnections = highlightList.length == 0 ? [] : _connections.filter(function(conn) {
+		var highlightedConnections = highlightList.length === 0 ? [] : _connections.filter(function(conn) {
 			var f = highlightList.filter(function(e) {
 				var m = (e.p1 == conn.p1 && e.p2 == conn.p2) || (e.p1 == conn.p2 && e.p2 == conn.p1);
 				if (!m) {  // if no match, if entries in highlightList are women, we may need
 					// to try matching against their spouses.  i think this is a weakness in the
 					// rendering and should be fixed.
-					if (e.p1.spouse != null) {
+					if (e.p1.spouse !== null) {
 						m = (e.p1.spouse == conn.p1 && e.p2 == conn.p2) || (e.p1.spouse == conn.p2 && e.p2 == conn.p1);
 					}
 					if (!m) {
-						if (e.p2.spouse != null) {
+						if (e.p2.spouse !== null) {
 							m = (e.p1 == conn.p1 && e.p2.spouse == conn.p2) || (e.p1 == conn.p2 && e.p2.spouse == conn.p1);
 						}
 					}				
@@ -818,19 +810,20 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			});
 			return f.length > 0;
 		});
-		if (highlightedConnections.length == 0) {
+        var i;
+		if (highlightedConnections.length === 0) {
 			$.extend(ctx, _params.chartStyle);
 			ctx.beginPath();
 			ctx.rect(0, 0, _canvas.width, _canvas.height);
 			ctx.closePath();
 			ctx.fill();
-			for (var i =0; i < _connections.length; i++) {							
+			for (i =0; i < _connections.length; i++) {							
 				_drawAConnection(_connections[i], connectionFunction, ctx, co);
 			}
 		}
 		else {
 			$.extend(ctx, _params.highlightStyle);
-			for (var i =0; i < highlightedConnections.length; i++) {
+			for (i =0; i < highlightedConnections.length; i++) {
 				_drawAConnection(highlightedConnections[i], connectionFunction, ctx, co);			
 			}
 		}				
@@ -838,7 +831,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	
 	var chartConnectionTypes = {
 		"ancestor": function(connections) {
-			var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+			var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 			var drawFunc = horizontal ? function(connection, o1, o2, w1, w2, h1, h2) {
 				var p1 = [o1.left + w1, o1.top + (h1/2)];
 				var p2 = [o2.left, o2.top + (h2/2)];
@@ -855,7 +848,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			return drawFunc;
 		},
 		"descendant": function(connections) {
-			var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
+			var horizontal = _params.orientation !== null ? _params.orientation == HORIZONTAL : true;
 			var drawFunc = horizontal ? function(connection, o1, o2, w1, w2, h1, h2) {
 				var p1 = [o1.left, o1.top + (h1/2)];
 				var p2 = [o2.left + w2, o2.top + (h2/2)];
@@ -944,7 +937,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			self.fireUpdate(chartDiv.offset());
 			
 			// TODO: determine whether or not we want this repainted every time we do a redraw.
-			if (previewUI != null) {
+			if (previewUI !== null) {
 				
 				_previewParams = $.extend(_previewParams, params);
 				previewUI.redraw(_previewParams);
@@ -1028,7 +1021,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		sharingTime = _sharingTime;
 		sharingTime.addListener({chartUpdated:_update});
 		focus = sharingTime.getFocus();
-		drawConnections = params.drawConnections != null ? params.drawConnections : true;
+		drawConnections = params.drawConnections !== null ? params.drawConnections : true;
 		idPrefix = params.idPrefix || "";
 		chartDiv = $("#" + params.chartDiv);
 		
@@ -1053,7 +1046,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		_params = $.extend(defaults, params.defaults);
 		var rendererClass = params.renderer || _params.renderer;
 		
-		isStatic = params.static != null ? params.static : false;
+		isStatic = params.static !== null ? params.static : false;
 		if (!isStatic)
 			proxyDragger = new ProxyDragger(chartContainer, chartDiv, {filterClasses:"preview individual ui-slider-handle ui-slider"});
 	
@@ -1130,10 +1123,10 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			params.preview.orientation = _params.orientation;
 			params.preview.zoom = 1;
 			// here we set a few default values.
-			if (params.preview.drawConnections == null) params.preview.drawConnections = false;
-			if (params.preview.static == null) params.preview.static = true;
-			/*if (params.preview.renderer == null) */params.preview.renderer = "standard";
-			if (params.preview.idPrefix == null) params.preview.idPrefix = "preview_";								
+			if (params.preview.drawConnections === null) params.preview.drawConnections = false;
+			if (params.preview.static === null) params.preview.static = true;
+			/*if (params.preview.renderer === null) */params.preview.renderer = "standard";
+			if (params.preview.idPrefix === null) params.preview.idPrefix = "preview_";								
 				
 			previewUI = new SharingTimeUI();						
 			previewUI.initialize(sharingTime, params.preview);
@@ -1150,7 +1143,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			var slider = params.slider || "#slider", wheel = params.wheel || "#chartContainer";
 			var zh = new ZoomHandler({ minZoom:min, maxZoom:max, zoomStep:step, slider:slider, wheel:wheel, onZoom:_zoom });
 			
-			if (previewPane != null) {
+			if (previewPane !== null) {
 				proxyDragger.addListener(previewPane);
 				zh.addListener(previewPane);		
 				self.addListener(previewPane); 
