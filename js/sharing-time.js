@@ -165,6 +165,10 @@
 	};
 	
 	var _findLineageList = function(p) {
+        if(typeof p == 'undefined'){
+            return {people:[],relationships:[]};
+        }
+
 		var id = typeof p == 'string' ? p : p.id;
 		var ll = _fromCache(id, "lineagelist");
 		if (!ll) {

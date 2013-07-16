@@ -542,6 +542,16 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			var _oneLevel = function(person, idx, accumulator) {				
 				var c = _getSlot(slots, idx);
 				var p  = person || focus;					
+
+
+                // Now we're going to pull a little switch-a-roo if this is the focus and a female. 
+                // In order to get parents to display in the correct vertical order we need to render
+                // the husband first. Subsequent calls are OK already, but if the focus is a female, 
+                // that set of parents will be off
+                if(p == focus && p.s == 'F' && typeof p.spouse == 'object'){
+                    p = p.spouse;
+                }
+
 				var wasNew = _addPerson(p);
 				c.push(p);
 				var _drawOne = function(person) {				
@@ -625,9 +635,6 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	var _positionChart = function(slots) {
 		var co = chartDiv.offset();
 		var zoom = _params.zoom || 1;
-	//	chartDiv.css("font-size", zoom * 100 + "%");
-		//chartDiv.css("line-height", zoom * 100 + "%");
-		co = chartDiv.offset();
 		
 		var horizontal = _params.orientation != null ? _params.orientation == HORIZONTAL : true;
 		var slot = 0, slotLengths = [];
@@ -645,7 +652,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 				
 				offsets.left = ((offsets.left /** zoom*/) + co.left) ;
 				offsets.top = ((offsets.top /** zoom*/) + co.top);
-				
+
 				div.offset(offsets);
 				var stepSize = (horizontal ? div.outerWidth() : div.outerHeight());
 				if (stepSize > largestStepSize) {
@@ -1028,17 +1035,16 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		_canvas = document.createElement("canvas");
 		_canvas.id="chartCanvas";
 		chartDiv.append(_canvas);
+
+		_canvas.width = chartDiv.width(); 
+		_canvas.height = chartDiv.height();
 		
 		if (ie) {
 			// for IE we have to set a big canvas size. actually you can override this, too, if 1200 pixels
 		        // is not big enough for the biggest connector/endpoint canvas you have at startup.
 		        //jsPlumb.sizeCanvas(canvas, 0, 0, DEFAULT_NEW_CANVAS_SIZE, DEFAULT_NEW_CANVAS_SIZE);
-		        _canvas.width = 2000;_canvas.height = 2000;
 		        _canvas = G_vmlCanvasManager.initElement(_canvas);
 		}
-        
-		_canvas.width = chartDiv.width(); 
-		_canvas.height = chartDiv.height();
 		
 		waitDiv = params.waitDiv ? $("#" + params.waitDiv) : null; 
 		chartContainer = params.chartContainer ? $("#" + params.chartContainer) : chartDiv.parent();			
