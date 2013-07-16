@@ -292,6 +292,10 @@
 			_initializePerson(p);
 		}		
 	};
+
+    var refocus = function(personId){
+        _focusPerson = _findPerson(personId);
+    };
 	
 	var _log = function(msg) {
 		if (typeof console != "undefined") {
@@ -338,6 +342,9 @@
 		this.getPeopleCount = function() { return _people.length; };
 		this.makeBlankPerson = _blankPerson;						
 		this.append = _append;
+        this.people = _people;
+        this.focus = _focus;
+        this.refocus = refocus;
 	};
 	
 	var SharingTime = window.SharingTime = {

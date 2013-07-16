@@ -39,14 +39,14 @@
             treehtml += '                    <div id="chartPreview"></div> ';
             treehtml += '                </div> ';
             treehtml += '                <div id="info"></div>		';
-            treehtml += '                <a id="dialog_link" class="btn ui-state-default ui-corner-all chkOrientation" href="#h" rel="horizontal">';
+            treehtml += '                <span id="dialog_link" class="btn ui-state-default ui-corner-all chkOrientation" rel="horizontal">';
             treehtml += '                    <span class="ui-icon ui-icon-newwin"></span>';
             treehtml += '                    Horizontal Orientation';
-            treehtml += '                </a>';
-            treehtml += '                <a class="btn ui-state-default ui-corner-all chkOrientation" id="vert" href="#v" rel="vertical">';
+            treehtml += '                </span>';
+            treehtml += '                <span class="btn ui-state-default ui-corner-all chkOrientation" id="vert" rel="vertical">';
             treehtml += '                    <span class="ui-icon ui-icon-carat-2-n-s"></span>';
             treehtml += '                    Vertical Orientation';
-            treehtml += '                </a>';
+            treehtml += '                </span';
             treehtml += '                <div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px; ">';
             treehtml += '                    <div style="left: 16px; top: 17px; width: 59px; height: 62px; overflow-x: hidden; overflow-y: hidden; position: absolute; ">';
             treehtml += '                        <div class="pvcompas"></div>';
@@ -72,6 +72,11 @@
             $(this._target).html(treehtml);
 
             this.addAncestorsToTree();
+
+            if(typeof this.options.personClick == 'function'){
+                $(document).on('click','.chartperson',this.options.personClick)
+            }
+
         };
 
         this.addAncestorsToTree = function(){
@@ -108,10 +113,13 @@
                 ids.sort();
 
                 data.data.focus = ids[0];
-                makeStChart(data);
+                self.chart = makeStChart(data);
             });
         };
 
+        this.refocus = function(id){
+            this.chart.refocus(id);
+        };
 
         this.init();
     }

@@ -19,23 +19,23 @@
 		params = params || {};
 		var p = $.extend({}, _defaults);
 		$.extend(p, params);
-		var sharingTime = null, ui = null;
-		var panFuncs = null; 
+
+		this.sharingTime = null;
+        this.ui = null;
+		this.panFuncs = null; 
 		
 		this.HORIZONTAL = "horizontal";
 		this.VERTICAL = "vertical";
 				
 		this.load = function(options, requestParameters) {
-			ui = new SharingTimeUI();
+            this.options = options;
+			this.ui = new SharingTimeUI();
 			requestParameters = requestParameters || {};
 			var finalReqParams = $.extend({ a: params.a, d: params.d, nfsid: params.nfsid }, requestParameters);
 
-			(function(d) {
-				sharingTime = SharingTime.getInstance(d['data']);				
-				ui.initialize(sharingTime, options);
-				panFuncs = { "left":ui.panLeft, "up":ui.panUp, "right":ui.panRight, "down":ui.panDown };
-			})(params.data);
-
+            this.sharingTime = SharingTime.getInstance(params.data.data);
+            this.ui.initialize(this.sharingTime, options);
+            this.panFuncs = { "left":this.ui.panLeft, "up":this.ui.panUp, "right":this.ui.panRight, "down":this.ui.panDown };
 		};
 		
 		/**
@@ -50,7 +50,7 @@
 		 * Recenters the chart to the currently focused individual.
 		 */
 		this.recenter = function() {
-			ui.recenter();
+			this.ui.recenter();
 		};
 		
 		/**
@@ -58,7 +58,19 @@
 		 * @param orientation Either "horizontal" or "vertical"
 		 */
 		this.setOrientation = function(orientation) {
-			ui.redraw({ orientation:orientation });
+			this.ui.redraw({ orientation:orientation });
 		};
+
+        this.refocus = function(personId){
+            // Remove people
+            $('#chart').children('div').remove();
+            // Clear canvas now
+            var canvas = $('#chartCanvas')[0];
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            this.sharingTime.refocus(personId);
+            // clear existing stuff
+            this.ui.redraw();
+        };
 	};	
 })();

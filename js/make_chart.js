@@ -30,4 +30,6 @@ function makeStChart(json){
         chart.setOrientation($(this).attr("rel"));
     });	
     $('#slider').removeClass('ui-slider-horizontal');
+
+    return chart;
 }

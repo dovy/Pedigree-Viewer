@@ -2,7 +2,7 @@
 
 	var SimpleCache = function(idGenerator, valueGenerator) {
 		var c = {};
-		this.clear = function() { delete c; c = {}; }
+		this.clear = function() { c = {}; };
 		this.get = function(item) {
 			var id = idGenerator(item);
 			var o = c[id];
@@ -107,6 +107,7 @@ var ProxyDragger = window.ProxyDragger = function(container, element, options) {
 	var _panningNow = false;
 	//todo refactor to use _clamp; we can pass in the function we want to execute post-clamp.
 	var _pan = function(input){
+        var sl;
 		_panningNow = true;
 		input = input || {};
 		var values = {};
@@ -117,9 +118,9 @@ var ProxyDragger = window.ProxyDragger = function(container, element, options) {
 		var r = _getRanges();
 		if (input.left) {
 			var proposedLeft = o.left + input.left;
-			if (proposedLeft >= r.MAX_LEFT) input.left = input.left + (r.MAX_LEFT - proposedLeft)
+			if (proposedLeft >= r.MAX_LEFT) input.left = input.left + (r.MAX_LEFT - proposedLeft);
 			if (proposedLeft + dw <= r.MIN_LEFT) input.left = r.MIN_LEFT - o.left - dw;			
-			var sl = input.left < 0 ? "-" : "+";
+			sl = input.left < 0 ? "-" : "+";
 			values.left = sl + "=" + Math.abs(input.left) + "px";
 		}
 		
@@ -127,7 +128,7 @@ var ProxyDragger = window.ProxyDragger = function(container, element, options) {
 			var proposedTop = o.top + input.top;
 			if (proposedTop >= r.MAX_TOP) input.top = (r.MAX_TOP - o.top);
 			if (proposedTop + dh <= r.MIN_TOP) input.top = r.MIN_TOP - o.top - dh;
-			var sl = input.top < 0 ? "-" : "+";
+			sl = input.top < 0 ? "-" : "+";
 			values.top = sl + "=" + Math.abs(input.top) + "px";
 		}
 		
@@ -260,7 +261,7 @@ var StandardChartRenderer = function(options) {
 	AbstractRenderer.call(this, options);	
 	var self = this;
 	var _personStyles = { 
-		'fullname': function(p) { return "<div id='" + self.personIdGenerator(p) + "' class='" + self.defaults.classes.individual + " " + (MALE == p.s ? self.defaults.classes.male : FEMALE == p.s ? self.defaults.classes.female : "") + "' rel='" + p.id + "'><span>&nbsp;</span>" + _renderName(p) + "</div>" },
+		'fullname': function(p) { return "<div id='" + self.personIdGenerator(p) + "' class='" + self.defaults.classes.individual + " " + (MALE == p.s ? self.defaults.classes.male : FEMALE == p.s ? self.defaults.classes.female : "") + " chartperson' rel='" + p.id + "'><span>&nbsp;</span>" + _renderName(p) + "</div>" },
 		'withspouse' : function(p) {
 			var s = p.spouse ? p.spouse : p.sp ? sharingTime.findPerson(p.sp) : null;
 			var r = _personStyles[FULLNAME](p);
@@ -912,7 +913,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 		_params = $.extend(_params, params);
 		if (waitDiv) waitDiv.html(_params.messages.drawing);
 		chartDiv.css('visibility', 'hidden');
-		var focus = sharingTime.getFocus();
+		focus = sharingTime.getFocus();
 		var _actuallyRedraw = function() {
 			var curZoom = _params.zoom || 1;
 			_zoom(1);
@@ -1094,17 +1095,18 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 			});
 			
 			// setup the ancestor/descendant hover functionality.
-			$("." + defaults.classes.individual).hover(function() {
-				$(this).parent().addClass(defaults.classes.hover);
-				hoverCache.get($(this));
-				$(".lineage_" + $(this).attr(REL)).addClass(defaults.classes.selected);
+			// $("." + defaults.classes.individual).hover(function() {
+			$(document).on('mouseenter',"." + defaults.classes.individual,function(e) {
+				$(e.target).parent().addClass(defaults.classes.hover);
+				hoverCache.get($(e.target));
+				$(".lineage_" + $(e.target).attr(REL)).addClass(defaults.classes.selected);
 				if (drawConnections) {				
-					var hlList = highlightCache.get($(this));
+					var hlList = highlightCache.get($(e.target));
 					_drawConnections(hlList);
 				}
-			},
-			function() {
-				$(this).parent().removeClass(defaults.classes.hover);
+			});
+			$(document).on('mouseleave',"." + defaults.classes.individual,function(e) {
+				$(e.target).parent().removeClass(defaults.classes.hover);
 				$("." + defaults.classes.individual).removeClass(defaults.classes.selected);
 				if (drawConnections) {
 					_drawConnections();
@@ -1165,6 +1167,7 @@ var SharingTimeUI = window.SharingTimeUI = function(){
 	this.panUp = _panUp;
 	this.panRight = _panRight;
 	this.panDown = _panDown;
+    this.focus = focus;
 	this.getProxyDragger = function() { return proxyDragger; };
 };
 })();
