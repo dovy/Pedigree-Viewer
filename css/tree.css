@@ -18,8 +18,11 @@
 
 /* PAGE CONTENT */
 #page_wrapper #page-content #page-content-wrapper {
-    border:#e5e1d8 solid 1px;
     padding-right:240px;
+}
+
+#page_wrapper {
+    border:#e5e1d8 solid 1px;
 }
 
 label {
