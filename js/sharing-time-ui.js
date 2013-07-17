@@ -1021,7 +1021,7 @@
             sharingTime = _sharingTime;
             sharingTime.addListener({chartUpdated:_update});
             focus = sharingTime.getFocus();
-            drawConnections = params.drawConnections !== null ? params.drawConnections : true;
+            drawConnections = (typeof params.drawConnections == 'undefined' ? true : params.drawConnections);
             idPrefix = params.idPrefix || "";
             chartDiv = $("#" + params.chartDiv);
 
