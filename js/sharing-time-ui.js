@@ -462,12 +462,11 @@
 
             if ( s !== null && s == MALE) {
                 id = _params.ids.couple + id;
-            }
-            else if (FEMALE == s && person.spouse !== null) {
+            } else if (FEMALE == s && typeof person.spouse == 'object') {
                 id = _params.ids.couple + person.spouse.id;
-            }
-            else 
+            } else {
                 id = _params.ids.couple + "_blank_" + id;
+            }
             return idPrefix + id;
         };
 
