@@ -62,8 +62,9 @@
 	var _getOffset = function(element) {
 		var scale = _getZoomAndProperty(element);
 		var o = element.offset();
-		if (WEBKIT_TRANSFORM == scale[1] /*|| O_TRANSFORM == scale[1] */|| scale[0] == 1) return o;
-		else {
+		if (WEBKIT_TRANSFORM == scale[1] || scale[0] == 1) {
+            return o;
+        } else {
 			var l = o.left + (element.outerWidth() * (1 - scale[0]) / 2), t = o.top + (element.outerHeight() * (1 - scale[0]) / 2);
 			return {left:l, top:t};
 		}
@@ -76,8 +77,9 @@
 	 */
 	var _setOffset = function(element, offset) {
 		var scale = _getZoomAndProperty(element);
-		if (WEBKIT_TRANSFORM == scale[1] || /*O_TRANSFORM == scale[1] ||*/ scale[0] == 1) return element.offset(offset);
-		else {
+		if (WEBKIT_TRANSFORM == scale[1] || scale[0] == 1) { 
+            return element.offset(offset);
+        } else {
 			var l = offset.left - (element.outerWidth() * (1 - scale[0]) / 2), t = offset.top - (element.outerHeight() * (1 - scale[0]) / 2);
 			return element.offset({left:l, top:t});
 		}
@@ -131,8 +133,11 @@
 		 * in absolute terms on the display.
 		 */
 		offset : function(element, offset) {
-			if (arguments.length == 1) return _getOffset(element);
-			else return _setOffset(element, offset);
+			if (arguments.length == 1) {
+                return _getOffset(element);
+            } else {
+                return _setOffset(element, offset);
+            }
 		}
 	};
 })();
