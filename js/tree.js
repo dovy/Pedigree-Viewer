@@ -22,6 +22,7 @@
         this.gedcom = gedcom;               // gedcom filename to parse
         this.parserurl = gedcomparserurl;   // gedcom parser URL
         this.options = options || {};
+        this.people = {};
 
         var self = this;
 
@@ -74,7 +75,7 @@
             this.addAncestorsToTree();
 
             if(typeof this.options.personClick == 'function'){
-                $(document).on('click','.chartperson',this.options.personClick)
+                $(document).on('click','.chartperson',this.options.personClick);
             }
 
         };
@@ -86,9 +87,9 @@
 
             $.getJSON(this.parserurl,params,function(json){
                 var data = {data:{focus:null,people:[]}};
-                var person;
+                var person,i;
                 var ids = [];
-                for(var i = 0;i<json.length;i++){
+                for(i = 0;i<json.length;i++){
                     person = {};
                     person.id = json[i].id;
                     ids.push(json[i].id);
@@ -114,6 +115,10 @@
 
                 data.data.focus = ids[0];
                 self.chart = makeStChart(data);
+
+                for(i = 0;i<json.length;i++){
+                    self.people[json[i].id] = json[i];
+                }
             });
         };
 

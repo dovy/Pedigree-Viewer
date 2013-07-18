@@ -26,93 +26,90 @@
 }
 
 label {
- cursor:pointer;
- }
+    cursor:pointer;
+}
 
 #chartContainer {
- 
+
     width:auto;
- 
+
     height:600px;
- 
+
     overflow:hidden;
- 
+
     position:relative;
- 
+
     cursor:move;
- 
+
 }
 
 #chart {
- 
+
     visibility:hidden;
- 
+
     cursor:move;
     position:relative;
 }
 
 #chartCanvas {
- 
     z-index:0;
- 
     position:absolute;
- 
 }
 
 #controls{
- color:#567;
- }
+    color:#567;
+}
 
 #info {
-display:none;
-position:absolute;
-z-index:10;
-width:17em;
-right:2em;
-top:2em;
-font-size:95%;
-background-color:white;
-padding:0.7em;
+    display:none;
+    position:absolute;
+    z-index:10;
+    width:17em;
+    right:2em;
+    top:2em;
+    font-size:95%;
+    background-color:white;
+    padding:0.7em;
 }
 
 #wait {
- text-align:center;
- font-size:200%;
-line-height:15em;
- color:#567;
- }
+    text-align:center;
+    font-size:200%;
+    line-height:15em;
+    color:#567;
+}
 
 #links {
- margin-left:5em;
-margin-top:3em;
- font-size:110%;
- color:#567;
- }
+    margin-left:5em;
+    margin-top:3em;
+    font-size:110%;
+    color:#567;
+}
 
 #links ul li {
- list-style-type:none;
+    list-style-type:none;
 }
 
 .couple {
-position:relative;
-z-index:1;
-background-color:#dee6f5;
-cursor:pointer;
+    position:relative;
+    z-index:1;
+    background-color:#dee6f5;
+    cursor:pointer;
 }
 
 .individual {
- }
+}
 
 .selected {
- background-color:#fff9b5;
- }
+    background-color:#fff9b5;
+}
 
 .hover {
- background-color:#dcecf3;
- }
+    background-color:#dcecf3;
+}
 
 ._jsPlumb_connector{
-z-index:0;
+    z-index:0;
 }
 
 ._jsPlumb_connector, 
@@ -202,7 +199,7 @@ _jsPlumb_endpoint{
     border-top-right-radius: 5px;
     -moz-border-radius-topright: 5px;
     -webkit-border-top-right-radius: 5px;
-	
+
 }
 
 .female {
@@ -215,14 +212,14 @@ _jsPlumb_endpoint{
 }
 
 .blank-couple {
- 
+
     border-style: dashed;
- 
+
     opacity: .7;
     filter: alpha(opacity=70);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-	
+
     display:none;
 }
 
@@ -254,23 +251,23 @@ _jsPlumb_endpoint{
 
 #pedigree {
     height: 600px;
-	
+
     background: #fff;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-	
+
     overflow:hidden;
-	
+
     width: auto;
 }
 
 #pedigree #tree_view {
     width: 100%;
     cursor: move !important;
-	
+
     visibility: hidden;
-	
+
     border: 1px solid #333;
 }
 
@@ -281,14 +278,14 @@ _jsPlumb_endpoint{
 
 #page-content-wrapper {
     margin: 0 !important;
- padding: 0 !important;
+    padding: 0 !important;
 }
 
 #chartPreviewContainer {
- 
+
     border: 1px solid #eee;
     background: #f8f8f8;
-    z-index: 900;
+    z-index: 90;
     opacity: .8;
     filter: alpha(opacity=80);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
@@ -303,7 +300,7 @@ _jsPlumb_endpoint{
     box-shadow:2px 2px 4px #ccc;
     -webkit-box-shadow:2px 2px 4px #ccc;
     -moz-box-shadow: 2px 2px 4px #ccc;
-	
+
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -314,15 +311,15 @@ _jsPlumb_endpoint{
 }
 
 .preview {
- 
+
     background:#fdf0bc;
- 
+
     opacity: .6;
     filter: alpha(opacity=60);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
     border:1px solid #d94b2e;
- 
+
     cursor:move;
     z-index:0;
 }
@@ -339,17 +336,17 @@ _jsPlumb_endpoint{
 
 #lmc3d {
     -webkit-user-select: none;
- z-index: 0;
- position: absolute;
- left: -1px;
- top: 5px;
- overflow-x: hidden;
- overflow-y: hidden;
- text-align: left;
- width: 90px;
- height: 196px;
- z-index: 9999;
- 
+    z-index: 0;
+    position: absolute;
+    left: -1px;
+    top: 5px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: left;
+    width: 90px;
+    height: 196px;
+    z-index: 9999;
+
 }
 
 span.btn {
