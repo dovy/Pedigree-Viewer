@@ -880,9 +880,26 @@
         * animates the chart div so that it is centered on the given person. 
         */
         var _centerOn = function(person, options) {
-            var ccw = chartContainer.outerWidth(), cch = chartContainer.outerHeight();
+            var ccw = chartContainer.outerWidth();
+
+            var cch = chartContainer.outerHeight();
+            var p = chartContainer.parent();
+            var shrinkit = false;
+            var p = chartContainer.parent();
+            while(p.length > 0){
+                if(p.outerHeight() < cch){
+                    cch = p.outerHeight();
+                    shrinkit = true;
+                }
+                p = p.parent();
+            }
+            if(shrinkit){
+                chartContainer.height(cch - 50);
+            }
+
             var cco = chartContainer.offset();
-            var cw = jsZoom.outerWidth(chartDiv), ch = jsZoom.outerHeight(chartDiv);
+            var cw = jsZoom.outerWidth(chartDiv)
+            var ch = jsZoom.outerHeight(chartDiv);
             // if chart smaller than container, center the whole chart:
             if (cw < ccw && ch < cch) {			
                 //chartDiv.offset({left:cco.left + ((ccw-cw)/2), top:cco.top+((cch-ch)/2)});
@@ -891,7 +908,8 @@
             else {				
                 var id = _getDivId(person);
                 var o = $("#" + id).offset();
-                var fw = $("#" + id).outerWidth(), fh = $("#" + id).outerHeight();
+                var fw = $("#" + id).outerWidth();
+                var fh = $("#" + id).outerHeight();
                 var co = jsZoom.offset(chartDiv);//chartDiv.offset();
                 //console.log("centering");
                 chartCenteringTypes[_params.chartType](person, id, o, fw, fh, ccw, cch, cco, cw, ch, co);
