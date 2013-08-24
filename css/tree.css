@@ -353,8 +353,14 @@ span.btn {
     display:block;
     float:left;
     margin:5px;
-    padding:0.4em 1em 0.4em 20px;
+    padding: 0 4px 4px 0;
     position:relative;
+}
+
+#tree .ui-icon {
+    display: inline-block;
+    position: relative;
+    top: 3px;
 }
 
 #page_wrapper {

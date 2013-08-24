@@ -50,7 +50,7 @@
         // get size and position of container. we dont get size of element; it may change.
         //	var co = container.offset(), cw = container.outerWidth(), ch = container.outerHeight();
         var down = false, downPosition = {};
-        var listenerSelector = options.listenerSelector || $("body"); 
+        var listenerSelector = options.listenerSelector || $(chartContainer); 
         listenerSelector.bind("mousedown", function(e) {
             if (e.which == 1) {
                 if (!filterClasses || !_filterByClass($(e.target))) {
@@ -885,7 +885,6 @@
             var cch = chartContainer.outerHeight();
             var p = chartContainer.parent();
             var shrinkit = false;
-            var p = chartContainer.parent();
             while(p.length > 0){
                 if(p.outerHeight() < cch){
                     cch = p.outerHeight();
@@ -898,7 +897,7 @@
             }
 
             var cco = chartContainer.offset();
-            var cw = jsZoom.outerWidth(chartDiv)
+            var cw = jsZoom.outerWidth(chartDiv);
             var ch = jsZoom.outerHeight(chartDiv);
             // if chart smaller than container, center the whole chart:
             if (cw < ccw && ch < cch) {			
