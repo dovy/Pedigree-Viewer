@@ -35,7 +35,12 @@
 
             this.sharingTime = SharingTime.getInstance(params.data.data);
             this.ui.initialize(this.sharingTime, options);
-            this.panFuncs = { "left":this.ui.panLeft, "up":this.ui.panUp, "right":this.ui.panRight, "down":this.ui.panDown };
+            this.panFuncs = { 
+                "left":this.ui.panLeft, 
+                "up":this.ui.panUp, 
+                "right":this.ui.panRight, 
+                "down":this.ui.panDown 
+            };
 		};
 		
 		/**
@@ -43,7 +48,7 @@
 		 * @param direction One of "left", "up", "down", "right"
 		 */
 		this.pan = function(direction) {			
-			panFuncs[direction]();
+			this.panFuncs[direction]();
 		};
 		
 		/**
