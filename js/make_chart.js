@@ -17,16 +17,22 @@ function makeStChart(json){
     });
 
     // pan
-    $(".pan").bind("click", function() {
+    $(".pan").on("click", function() {
         chart.pan($(this).attr("rel"));
     });
 
-    $("#centerFocus").bind('click', function() {
-        chart.recenter();
+    $('#chartContainer').on('touchmove',function(e){
+        var touches = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]; 
+        var xdist = touches[0].pageX - touches[touches.length - 1].pageX; 
+        var ydist = touches[0].pageY - touches[touches.length - 1].pageY; 
+        chart.dragPan(xdist,ydist);
+    });
+
+    $("#centerFocus").on('click', function(e) {
     });
 
     // orientation
-    $(".chkOrientation").click(function() {
+    $(".chkOrientation").on('click',function(e) {
         chart.setOrientation($(this).attr("rel"));
     });	
     $('#slider').removeClass('ui-slider-horizontal');

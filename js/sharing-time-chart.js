@@ -50,6 +50,10 @@
 		this.pan = function(direction) {			
 			this.panFuncs[direction]();
 		};
+
+        this.dragPan = function(x,y){
+            this.ui.dragPan(x,y);
+        };
 		
 		/**
 		 * Recenters the chart to the currently focused individual.

@@ -369,6 +369,10 @@ span.btn {
     font-size:0.7em;
 }
 
+#page_wrapper, #page-layout, #page-content, #page-content-wrapper, #chartContainer {
+    height: 100%;
+}
+
 #page_wrapper .clear {
     clear:both;
 }

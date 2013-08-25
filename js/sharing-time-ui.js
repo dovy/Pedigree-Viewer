@@ -145,6 +145,20 @@
         this.moveTo = function(pos) { _clamp(co.left + pos.left, co.top + pos.top); };
 
         this.moveToPosition = function(pos) { _clamp(pos.left, pos.top); };
+
+        this.dragPan = function(x,y){
+            var values = {
+                left: x,
+                top: y
+            };
+            element.animate(values, {
+                duration:'medium', 
+                step:self.fireUpdate, 
+                complete:function() { 
+                _panningNow = false; 
+                } 
+            });		
+        }
     };
 
     var PreviewPane = window.PreviewPane = function(params) {
@@ -890,6 +904,9 @@
                     cch = p.outerHeight();
                     shrinkit = true;
                 }
+                if(p[0] == $('#page_wrapper')[0] || $(p).css('position') == 'absolute'){
+                    break;
+                }
                 p = p.parent();
             }
             if(shrinkit){
@@ -1012,8 +1029,16 @@
         var proxyDragger = null;
 
         var _pan = function(input) {
-            if (proxyDragger) proxyDragger.pan(input);
+            if (proxyDragger) {
+                proxyDragger.pan(input);
+            }
         };
+
+        var dragPan = function(x,y){
+            if (proxyDragger) {
+                proxyDragger.dragPan(x,y);
+            }
+        }
 
         var _panLeft = function() { _pan({left:-150}); };
         var _panUp = function() { _pan({top:-150}); };
