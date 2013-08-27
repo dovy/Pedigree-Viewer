@@ -86,7 +86,8 @@
             };
 
             $.getJSON(this.parserurl,params,function(json){
-                var data = {data:{focus:null,people:[]}};
+                var data = {data:{people:[]}};
+
                 var person,i;
                 var ids = [];
                 for(i = 0;i<json.length;i++){
@@ -113,7 +114,11 @@
                 }
                 ids.sort();
 
-                data.data.focus = ids[0];
+                if(typeof self.options.focusPerson != 'undefined'){
+                    data.data.focus = self.options.focusPerson;
+                }else{
+                    data.data.focus = ids[0];
+                }
                 self.chart = makeStChart(data);
 
                 for(i = 0;i<json.length;i++){
