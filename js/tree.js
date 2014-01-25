@@ -114,9 +114,14 @@
 
                     data.data.people.push(person);
                 }
-                ids.sort();
 
-                data.data.focus = ids[0];
+                if(typeof self.options.focusPerson == 'undefined'){
+                    ids.sort();
+                    data.data.focus = ids[0];
+                }else{
+                    data.data.focus = self.options.focusPerson;
+                }
+
                 self.chart = makeStChart(data);
 
                 for(i = 0;i<json.length;i++){
