@@ -107,6 +107,9 @@
                         person.sp = json[i].wife[0];
                     }else if(typeof json[i].husb != 'undefined'){
                         person.sp = json[i].husb[0];
+
+                        // we need this in case spouses don't claim each other
+                        person.husb = json[i].husb;
                     }
 
                     data.data.people.push(person);

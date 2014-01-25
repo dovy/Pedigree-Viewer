@@ -452,23 +452,34 @@
         var _getDivId = function(person) {
             var id = null;
             var s = null;
+            var i;
 
-            try { s = person["s"];		 	 }
+            var possibleIds = [];
+
+            try { s = person["s"];}
             catch (e) { 
                 var o = 3;
             } //this is an IE catching bug; it moans about person.s being undefined for some reason!
 
-            try { id = person["id"];		 	 }
+            try { id = person["id"];}
             catch (e) { } //this is an IE catching bug; it moans about person.s being undefined for some reason!
 
-            if ( s !== null && s == MALE) {
-                id = _params.ids.couple + id;
-            } else if (FEMALE == s && typeof person.spouse == 'object') {
-                id = _params.ids.couple + person.spouse.id;
+            if(s === MALE){
+                possibleIds.push(_params.ids.couple + id);
+            }else if(typeof(person.husb) !== 'undefined'){
+                for(i=0;i<person.husb.length;i++){
+                    possibleIds.push(_params.ids.couple + person.husb[i]);
+                }
             } else {
-                id = _params.ids.couple + "_blank_" + id;
+                possibleIds.push(_params.ids.couple + "_blank_" + id);
             }
-            return idPrefix + id;
+
+            for(i=0;i<possibleIds.length;i++){
+                if($('#' + idPrefix + possibleIds[i]).length > 0){
+                    return idPrefix + possibleIds[i];
+                }
+            }
+            return idPrefix + possibleIds[0];
         };
 
         /**
@@ -761,6 +772,14 @@
                 var points;
                 if (typeof connectionPointCache[id1 + "_" + id2] == 'undefined') {			
                     var d1 = $("#" + id1), d2 = $("#" + id2);
+                    if(d1.length === 0){
+                        _getDivId(connection.p1);
+                        return false;
+                    }
+                    if(d2.length === 0){
+                        _getDivId(connection.p2);
+                        return false;
+                    }
                     var o1 = d1.offset(), o2 = d2.offset(), w1 = d1.outerWidth(), w2 = d2.outerWidth(), h1 = d1.outerHeight(), h2 = d2.outerHeight();
                     points = drawFunc(connection, o1, o2, w1, w2, h1, h2);
                     for (var i = 0; i < 4; i++) {
