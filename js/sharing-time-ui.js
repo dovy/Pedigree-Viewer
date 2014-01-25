@@ -249,6 +249,7 @@
         this.wait = options.wait, this.idGenerator = options.idGenerator, 
         this.classGenerator = options.classGenerator, this.personIdGenerator = options.personIdGenerator,
         this.defaults = options.defaults;	
+        this.sharingTime = options.sharingTime;
     };
 
     /**
@@ -263,7 +264,7 @@
         var _personStyles = { 
             'fullname': function(p) { return "<div id='" + self.personIdGenerator(p) + "' class='" + self.defaults.classes.individual + " " + (MALE == p.s ? self.defaults.classes.male : FEMALE == p.s ? self.defaults.classes.female : "") + " chartperson' rel='" + p.id + "'><span>&nbsp;</span>" + _renderName(p) + "</div>";},
             'withspouse' : function(p) {
-                var s = p.spouse ? p.spouse : p.sp ? sharingTime.findPerson(p.sp) : null;
+                var s = p.spouse ? p.spouse : p.sp ? self.sharingTime.findPerson(p.sp) : null;
                 var r = _personStyles[FULLNAME](p);
                 var sp = s ? _formatPerson(s, FULLNAME) : null;
                 // always draws the male on top.
@@ -275,24 +276,24 @@
                 return r;
             },
             'married to' : function(p) {
-                var s = p.sp ? sharingTime.findPerson(p.sp) : null;
+                var s = p.sp ? self.sharingTime.findPerson(p.sp) : null;
                 if (s) return 'Spouse: ' + _formatPerson(s, FULLNAME);
                 return '';
             },
             'father' : function(p) {
                 if (p.f !== null) {
-                    return 'Father: ' + _formatPerson(sharingTime.findPerson(p.f), FULLNAME);
+                    return 'Father: ' + _formatPerson(self.sharingTime.findPerson(p.f), FULLNAME);
                 }
                 return '';
             },
             'mother' : function(p) {
                 if (p.m !== null) {
-                    return 'Mother: ' + _formatPerson(sharingTime.findPerson(p.m), FULLNAME);
+                    return 'Mother: ' + _formatPerson(self.sharingTime.findPerson(p.m), FULLNAME);
                 }
                 return '';
             },
             'children' : function(p) {
-                var o = sharingTime.findOffspring(p.id);
+                var o = self.sharingTime.findOffspring(p.id);
                 if (o && o.length > 0) {
                     var t = 'Children :<br/>';
                     for (var i = 0; i < o.length; i++)
@@ -1068,6 +1069,7 @@
 
             // make the renderer.
             _renderer = new _rendererMap[rendererClass]({
+                sharingTime:sharingTime,
                 chart:chartDiv, 
                 container:chartContainer, 
                 wait:waitDiv,
