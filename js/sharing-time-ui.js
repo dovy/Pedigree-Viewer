@@ -559,8 +559,8 @@
                     // In order to get parents to display in the correct vertical order we need to render
                     // the husband first. Subsequent calls are OK already, but if the focus is a female, 
                     // that set of parents will be off
-                    if(p == focus && p.s == 'F' && typeof p.spouse == 'object'){
-                        p = p.spouse;
+                    if(p == focus && p.s == 'F' && typeof p.spouse == 'object' && p.spouse !== null){
+                            p = p.spouse;
                     }
 
                     var wasNew = _addPerson(p);
