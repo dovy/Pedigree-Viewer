@@ -90,6 +90,7 @@
                 var person,i;
                 var ids = [];
                 for(i = 0;i<json.length;i++){
+                    self.people[json[i].id] = json[i];
                     person = {};
                     person.id = json[i].id;
                     ids.push(json[i].id);
@@ -123,11 +124,46 @@
                 }
 
                 self.chart = makeStChart(data);
-
-                for(i = 0;i<json.length;i++){
-                    self.people[json[i].id] = json[i];
-                }
             });
+        };
+
+        this.addJsonPeople = function(json){
+            var people = {};
+            var person,i;
+            for(i = 0;i<json.length;i++){
+                this.people[json[i].id] = json[i];
+
+                person = {};
+                person.id = json[i].id;
+
+                person.fn = json[i].name;
+                // sn: ,
+                person.s = (json[i].gender == 'F' ? 'F' : 'M');
+                if(typeof json[i].fathers != 'undefined'){
+                    person.f = json[i].fathers[0];
+                }
+                if(typeof json[i].mothers != 'undefined'){
+                    person.m = json[i].mothers[0];
+                }
+                if(typeof json[i].wife != 'undefined'){
+                    person.sp = json[i].wife[0];
+                }else if(typeof json[i].husb != 'undefined'){
+                    person.sp = json[i].husb[0];
+
+                    // we need this in case spouses don't claim each other
+                    person.husb = json[i].husb;
+                }
+
+                people[person.id] = person;
+            }
+
+            return people;
+        };
+
+        this.addPeople = function(people){
+            // cleanup people
+            people = this.addJsonPeople(people);
+            this.chart.addPeople(people);
         };
 
         this.refocus = function(id){

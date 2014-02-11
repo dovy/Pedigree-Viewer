@@ -77,5 +77,9 @@
             // clear existing stuff
             this.ui.redraw();
         };
+
+        this.addPeople = function(people){
+            return this.sharingTime.addPeople(people);
+        };
 	};	
 })();

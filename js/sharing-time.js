@@ -311,6 +311,7 @@
 	/**
 	 * appends the given data, which is expected to have a 'focus' individual and a list of
 	 * other people.  the focus individual should already exist; their record is updated.
+     * Not 100% this function actually works or gets called :-/
 	 */
 	var _append = function(data) {
 		for (var i in data.people) {
@@ -324,6 +325,17 @@
 		_focusPerson = _findPerson(_focus);
 		_fireEvent("chartUpdated", data);
 	};
+
+    var _addPeople = function(people){
+        for(var i in people){
+            if(!_findPerson(i)){
+                _people.push(people[i]);
+            }
+        }
+        for(var i in people){
+            _initializePerson(people[i]);
+        }
+    }
 				
 	var _sharingTime = function(data) {
 		_people = data.people;
@@ -346,6 +358,7 @@
 		this.getPeopleCount = function() { return _people.length; };
 		this.makeBlankPerson = _blankPerson;						
 		this.append = _append;
+        this.addPeople = _addPeople;
         this.people = _people;
         this.focus = _focus;
         this.refocus = refocus;
